@@ -1,0 +1,263 @@
+/* =========================================================
+   SCSC Top Times — Cleaned & Mobile-Safe CSS
+   ========================================================= */
+
+/* -----------------------------
+   Reset & Layout
+----------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #ff4500, #000080);
+  color: #ffffff;
+}
+
+/* -----------------------------
+   Wrapper / Footer anchor
+----------------------------- */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+main.content {
+  flex: 1;
+}
+
+/* Inner content wrapper (critical for mobile scrolling) */
+.content-inner {
+  padding: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* -----------------------------
+   Header
+----------------------------- */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 12px;
+  background-color: #000080;
+  text-align: center;
+}
+
+.header img {
+  max-width: 140px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  text-shadow: 2px 2px 5px #000000;
+}
+
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* -----------------------------
+   Form Layout
+----------------------------- */
+form {
+  margin-bottom: 24px;
+}
+
+/* Responsive grid */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 1024px) {
+  .form-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .form-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.form-group select,
+.form-group button {
+  padding: 12px 14px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #dcdcdc;
+}
+
+.form-group select {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.form-group button {
+  background-color: #000080;
+  color: #ffffff;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.form-group button:hover {
+  background-color: #001aa8;
+}
+
+/* -----------------------------
+   Results Header
+----------------------------- */
+h2 {
+  margin: 12px 0 10px;
+  text-align: center;
+}
+
+/* -----------------------------
+   Table (Desktop / Tablet)
+----------------------------- */
+table {
+  width: 100%;
+  min-width: 520px; /* enables scroll on tablets */
+  border-collapse: collapse;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+thead th {
+  background-color: #ff8c00;
+  color: #ffffff;
+  text-align: left;
+  padding: 12px;
+  font-weight: 700;
+}
+
+tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+/* -----------------------------
+   Row animation (used by JS)
+----------------------------- */
+#results-table tr {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#results-table tr.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -----------------------------
+   Mobile: Table → Cards
+----------------------------- */
+@media (max-width: 600px) {
+  table {
+    min-width: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  thead {
+    display: none;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  #results-table tr {
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 14px;
+    margin: 10px 4px 16px;
+    padding: 8px 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  #results-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border: none;
+    padding: 10px 4px;
+  }
+
+  #results-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #666;
+    margin-right: 12px;
+  }
+}
+
+/* -----------------------------
+   Footer
+----------------------------- */
+footer {
+  text-align: center;
+  padding: 12px;
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.25);
+}
+/* Center filter controls as a group */
+.form-row {
+  display: flex;
+  justify-content: center;   /* center as a block */
+  align-items: flex-end;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Prevent controls from stretching too wide */
+.form-group {
+  min-width: 160px;
+  max-width: 200px;
+}
