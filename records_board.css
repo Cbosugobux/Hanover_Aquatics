@@ -1,3 +1,574 @@
+:root {
+  /* =========================================================
+     HANOVER AQUATICS BRANDING
+     ========================================================= */
+
+  --brand-primary: #111111;
+  --brand-primary-dark: #000000;
+
+  --brand-accent: #f58220;
+  --brand-accent-dark: #c95f00;
+
+  --page-bg: #08090b;
+  --page-bg-2: #1d2024;
+
+  --surface: #121518;
+  --surface-raised: #1d2125;
+
+  --placard: #ffffff;
+  --placard-alt: #f4f4f4;
+
+  --text-main: #ffffff;
+  --text-dark: #15171a;
+  --text-muted: #adb3b9;
+
+  --border-soft: rgba(255, 255, 255, .12);
+
+  --shadow:
+    0 14px 34px rgba(0, 0, 0, .34);
+
+  --radius-lg: 16px;
+  --radius-md: 10px;
+}
+
+
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body.record-board-page {
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top,
+      var(--page-bg-2) 0%,
+      var(--page-bg) 72%
+    );
+
+  color: var(--text-main);
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   PAGE SHELL
+   ========================================================= */
+
+.record-page-shell {
+  width: min(1760px, 98%);
+
+  margin: 0 auto;
+
+  padding:
+    20px
+    12px
+    32px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.record-board-nav {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin:
+    0
+    0
+    18px;
+}
+
+.record-board-nav a {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding:
+    9px
+    18px;
+
+  border:
+    2px solid var(--brand-accent);
+
+  border-radius:
+    9px;
+
+  background:
+    var(--brand-primary);
+
+  color:
+    #ffffff;
+
+  font-size:
+    .9rem;
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    .01em;
+
+  text-decoration:
+    none;
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, .22);
+
+  transition:
+    background .15s ease,
+    border-color .15s ease,
+    transform .15s ease,
+    box-shadow .15s ease;
+}
+
+.record-board-nav a.active {
+  background:
+    var(--brand-accent);
+
+  border-color:
+    var(--brand-accent);
+
+  color:
+    #ffffff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .record-board-nav a:hover {
+    background:
+      var(--brand-accent);
+
+    border-color:
+      var(--brand-accent);
+
+    transform:
+      translateY(-1px);
+
+    box-shadow:
+      0 5px 12px rgba(0, 0, 0, .28);
+  }
+}
+
+.record-board-nav a:focus-visible {
+  outline:
+    3px solid #ffffff;
+
+  outline-offset:
+    3px;
+}
+
+
+/* =========================================================
+   MAIN RECORD BOARD
+   ========================================================= */
+
+.record-board {
+  overflow: hidden;
+
+  border:
+    1px solid var(--border-soft);
+
+  border-radius:
+    var(--radius-lg);
+
+  background:
+    var(--surface);
+
+  box-shadow:
+    var(--shadow);
+}
+
+
+/* =========================================================
+   RECORD BOARD HEADER
+   ========================================================= */
+
+.record-board-header {
+  display: grid;
+
+  grid-template-columns:
+    minmax(150px, 1fr)
+    minmax(320px, 1.4fr)
+    minmax(150px, 1fr);
+
+  gap: 18px;
+
+  align-items: center;
+
+  padding:
+    20px
+    24px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #171717 0%,
+      var(--brand-primary-dark) 100%
+    );
+
+  border-bottom:
+    5px solid var(--brand-accent);
+}
+
+
+/* =========================================================
+   CLUB TITLE / LOGO
+   ========================================================= */
+
+.record-board-title {
+  text-align: center;
+}
+
+.record-board-title img {
+  display: none;
+
+  width: auto;
+  height: auto;
+
+  max-width: 250px;
+  max-height: 82px;
+
+  margin:
+    0 auto 8px;
+
+  object-fit: contain;
+}
+
+.record-board-title img.ready {
+  display: block;
+}
+
+.record-board-title h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(1.35rem, 2.1vw, 2.2rem);
+
+  line-height: 1.08;
+
+  font-weight: 900;
+
+  letter-spacing: .035em;
+
+  text-transform: uppercase;
+}
+
+.record-board-title .course-name {
+  margin-top: 7px;
+
+  color:
+    var(--brand-accent);
+
+  font-size:
+    .85rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   GIRLS / BOYS HEADINGS
+   ========================================================= */
+
+.record-gender-heading {
+  padding:
+    12px
+    16px;
+
+  border:
+    1px solid rgba(255, 255, 255, .20);
+
+  border-radius:
+    8px;
+
+  background:
+    rgba(255, 255, 255, .065);
+
+  color:
+    #ffffff;
+
+  font-size:
+    clamp(1rem, 1.5vw, 1.35rem);
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .055em;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+}
+
+.record-gender-heading:first-child {
+  border-left:
+    5px solid var(--brand-accent);
+}
+
+.record-gender-heading:last-child {
+  border-right:
+    5px solid var(--brand-accent);
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.record-status {
+  padding: 22px;
+
+  color:
+    var(--text-muted);
+
+  text-align:
+    center;
+
+  font-weight:
+    700;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.record-table-wrap {
+  width: 100%;
+
+  overflow-x: auto;
+
+  overscroll-behavior-x:
+    contain;
+
+  -webkit-overflow-scrolling:
+    touch;
+
+  background:
+    var(--surface);
+
+  scrollbar-color:
+    var(--brand-accent)
+    var(--surface-raised);
+}
+
+
+/* =========================================================
+   RECORD TABLE
+   ========================================================= */
+
+.record-table {
+  width: 100%;
+
+  min-width: 1180px;
+
+  border-collapse:
+    separate;
+
+  border-spacing:
+    0;
+
+  table-layout:
+    fixed;
+
+  background:
+    var(--surface);
+}
+
+
+/* =========================================================
+   TABLE GRID
+   ========================================================= */
+
+.record-table th,
+.record-table td {
+  border-right:
+    1px solid #d8dadd;
+
+  border-bottom:
+    1px solid #d8dadd;
+}
+
+
+/* =========================================================
+   AGE GROUP HEADERS
+   ========================================================= */
+
+.record-table thead th {
+  padding:
+    11px
+    6px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #191919,
+      #080808
+    );
+
+  color:
+    #ffffff;
+
+  font-size:
+    .82rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .035em;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+
+  border-bottom:
+    4px solid var(--brand-accent);
+}
+
+.record-table thead th.event-head {
+  width: 130px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--brand-accent),
+      var(--brand-accent-dark)
+    );
+
+  color:
+    #ffffff;
+
+  letter-spacing:
+    .07em;
+}
+
+
+/* =========================================================
+   EVENT COLUMN
+   ========================================================= */
+
+.record-table tbody th.event-cell {
+  padding:
+    9px
+    6px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #181818,
+      #050505
+    );
+
+  color:
+    #ffffff;
+
+  font-size:
+    .79rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .025em;
+
+  line-height:
+    1.15;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+
+  border-left:
+    3px solid var(--brand-accent);
+
+  border-right:
+    3px solid var(--brand-accent);
+}
+
+
+/* =========================================================
+   SECTION HEADERS
+   ========================================================= */
+
+.record-table tbody tr.section-row th {
+  padding:
+    10px
+    12px;
+
+  background:
+    var(--surface-raised);
+
+  color:
+    #ffffff;
+
+  border-top:
+    4px solid var(--brand-accent);
+
+  border-bottom:
+    1px solid var(--border-soft);
+
+  font-size:
+    .8rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .13em;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+}
+
+
 /* =========================================================
    RECORD PLACARDS
    ========================================================= */
@@ -23,9 +594,53 @@
     box-shadow .12s ease;
 }
 
+.record-table tbody tr:nth-child(even)
+.record-cell {
+  background:
+    var(--placard-alt);
+}
+
+
+/* Desktop mouse hover only */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .record-cell:hover {
+    position:
+      relative;
+
+    z-index:
+      2;
+
+    background:
+      #ffffff;
+
+    box-shadow:
+      inset 0 0 0 2px var(--brand-accent);
+  }
+}
+
+
+/* =========================================================
+   EMPTY RECORD CELLS
+   ========================================================= */
+
+.record-cell.empty {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      #101214,
+      #101214 8px,
+      #181b1e 8px,
+      #181b1e 16px
+    );
+}
+
 
 /* =========================================================
    RECORD CONTENT — DESKTOP
+
+   Athlete name is deliberately NOT truncated.
    ========================================================= */
 
 .record {
@@ -56,7 +671,12 @@
 }
 
 
-/* SWIMMER / RELAY NAME */
+/* =========================================================
+   SWIMMER / RELAY NAME
+
+   Names are allowed to wrap instead of showing:
+     REAGAN STR...
+   ========================================================= */
 
 .record-name {
   grid-area:
@@ -83,12 +703,6 @@
   text-transform:
     uppercase;
 
-  /*
-    IMPORTANT:
-    allow names to wrap instead of:
-      REAGAN STR...
-  */
-
   white-space:
     normal;
 
@@ -106,7 +720,9 @@
 }
 
 
-/* RECORD TIME */
+/* =========================================================
+   RECORD TIME
+   ========================================================= */
 
 .record-time {
   grid-area:
@@ -116,7 +732,7 @@
     start;
 
   color:
-    var(--brand-primary);
+    #111111;
 
   font-size:
     .9rem;
@@ -135,7 +751,12 @@
 }
 
 
-/* YEAR / MEET */
+/* =========================================================
+   YEAR / MEET
+
+   Secondary information can truncate.
+   Athlete name cannot.
+   ========================================================= */
 
 .record-meta {
   grid-area:
@@ -164,4 +785,671 @@
 
   white-space:
     nowrap;
+}
+
+
+/* =========================================================
+   RELAY RECORDS
+   ========================================================= */
+
+.record-cell.relay {
+  height:
+    auto;
+
+  min-height:
+    88px;
+}
+
+.record-cell.relay .record-name {
+  font-size:
+    .67rem;
+
+  line-height:
+    1.1;
+
+  white-space:
+    normal;
+
+  overflow:
+    visible;
+
+  text-overflow:
+    clip;
+}
+
+
+/* =========================================================
+   LEGEND / FOOTER
+   ========================================================= */
+
+.record-legend {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  justify-content:
+    center;
+
+  gap:
+    8px
+    24px;
+
+  padding:
+    13px
+    18px;
+
+  background:
+    #050505;
+
+  border-top:
+    4px solid var(--brand-accent);
+
+  color:
+    var(--text-muted);
+
+  font-size:
+    .76rem;
+
+  line-height:
+    1.35;
+}
+
+.record-legend strong {
+  color:
+    #ffffff;
+}
+
+
+/* =========================================================
+   TABLET
+   <= 900px
+
+   NAME + TIME ONLY
+
+   Meet/year disappear because they are secondary.
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .record-page-shell {
+    width:
+      100%;
+
+    padding:
+      12px
+      8px
+      24px;
+  }
+
+
+  /* ---------------------------------------------------------
+     HEADER
+     --------------------------------------------------------- */
+
+  .record-board-header {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      10px;
+
+    padding:
+      16px;
+  }
+
+  .record-gender-heading {
+    display:
+      none;
+  }
+
+  .record-board-title img {
+    max-width:
+      230px;
+
+    max-height:
+      68px;
+  }
+
+
+  /* ---------------------------------------------------------
+     BOARD
+     --------------------------------------------------------- */
+
+  .record-table {
+    min-width:
+      980px;
+  }
+
+  .record-table thead th {
+    padding:
+      10px
+      5px;
+
+    font-size:
+      .75rem;
+  }
+
+
+  /* ---------------------------------------------------------
+     TABLET PLACARD
+     --------------------------------------------------------- */
+
+  .record-cell {
+    height:
+      68px;
+
+    padding:
+      7px
+      8px;
+  }
+
+  .record {
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+
+    justify-content:
+      center;
+
+    gap:
+      4px;
+
+    width:
+      100%;
+
+    line-height:
+      1.1;
+  }
+
+
+  /* Full athlete name */
+
+  .record-name {
+    width:
+      100%;
+
+    color:
+      #15171a;
+
+    font-size:
+      .73rem;
+
+    line-height:
+      1.1;
+
+    font-weight:
+      900;
+
+    white-space:
+      normal;
+
+    overflow:
+      visible;
+
+    text-overflow:
+      clip;
+
+    overflow-wrap:
+      break-word;
+  }
+
+
+  /* Record time */
+
+  .record-time {
+    width:
+      100%;
+
+    color:
+      #111111;
+
+    font-size:
+      .88rem;
+
+    line-height:
+      1;
+
+    font-weight:
+      900;
+
+    text-align:
+      left;
+  }
+
+
+  /* Hide secondary info */
+
+  .record-meta {
+    display:
+      none;
+  }
+
+
+  /* Relay */
+
+  .record-cell.relay {
+    min-height:
+      76px;
+  }
+
+  .record-cell.relay .record-name {
+    font-size:
+      .65rem;
+
+    line-height:
+      1.08;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   <= 550px
+
+   NAME + TIME ONLY
+   ========================================================= */
+
+@media (max-width: 550px) {
+
+  .record-page-shell {
+    padding:
+      8px
+      0
+      20px;
+  }
+
+  .record-board {
+    border-radius:
+      0;
+
+    border-left:
+      0;
+
+    border-right:
+      0;
+  }
+
+
+  /* ---------------------------------------------------------
+     NAVIGATION
+     --------------------------------------------------------- */
+
+  .record-board-nav {
+    padding:
+      0
+      8px;
+
+    gap:
+      7px;
+  }
+
+  .record-board-nav a {
+    flex:
+      1 1 120px;
+
+    min-height:
+      46px;
+
+    padding:
+      9px
+      10px;
+
+    font-size:
+      .82rem;
+
+    text-align:
+      center;
+  }
+
+
+  /* ---------------------------------------------------------
+     HEADER
+     --------------------------------------------------------- */
+
+  .record-board-header {
+    padding:
+      14px
+      12px;
+  }
+
+  .record-board-title img {
+    max-width:
+      210px;
+
+    max-height:
+      60px;
+  }
+
+  .record-board-title h1 {
+    font-size:
+      1.25rem;
+  }
+
+  .record-board-title .course-name {
+    font-size:
+      .72rem;
+  }
+
+
+  /* ---------------------------------------------------------
+     BOARD
+     --------------------------------------------------------- */
+
+  .record-table {
+    min-width:
+      900px;
+  }
+
+  .record-table thead th {
+    padding:
+      9px
+      4px;
+
+    font-size:
+      .7rem;
+  }
+
+  .record-table thead th.event-head {
+    width:
+      100px;
+  }
+
+  .record-table tbody th.event-cell {
+    padding:
+      6px
+      4px;
+
+    font-size:
+      .68rem;
+
+    line-height:
+      1.08;
+  }
+
+
+  /* ---------------------------------------------------------
+     MOBILE PLACARD
+     --------------------------------------------------------- */
+
+  .record-cell {
+    height:
+      66px;
+
+    padding:
+      6px
+      7px;
+  }
+
+  .record {
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+
+    justify-content:
+      center;
+
+    gap:
+      4px;
+
+    width:
+      100%;
+  }
+
+
+  /* Athlete name */
+
+  .record-name {
+    width:
+      100%;
+
+    color:
+      #15171a;
+
+    font-size:
+      .68rem;
+
+    line-height:
+      1.08;
+
+    font-weight:
+      900;
+
+    white-space:
+      normal;
+
+    overflow:
+      visible;
+
+    text-overflow:
+      clip;
+
+    overflow-wrap:
+      break-word;
+  }
+
+
+  /* Time */
+
+  .record-time {
+    width:
+      100%;
+
+    color:
+      #111111;
+
+    font-size:
+      .82rem;
+
+    line-height:
+      1;
+
+    font-weight:
+      900;
+
+    text-align:
+      left;
+  }
+
+
+  /* No meet/year on phones */
+
+  .record-meta {
+    display:
+      none;
+  }
+
+
+  /* Relay names */
+
+  .record-cell.relay {
+    min-height:
+      74px;
+  }
+
+  .record-cell.relay .record-name {
+    font-size:
+      .61rem;
+
+    line-height:
+      1.07;
+  }
+
+
+  /* Footer */
+
+  .record-legend {
+    justify-content:
+      flex-start;
+
+    padding:
+      11px
+      12px;
+
+    font-size:
+      .7rem;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   <= 380px
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .record-board-nav a {
+    flex:
+      1 1 100%;
+
+    width:
+      100%;
+  }
+
+  .record-board-title img {
+    max-width:
+      185px;
+
+    max-height:
+      54px;
+  }
+
+  .record-board-title h1 {
+    font-size:
+      1.12rem;
+  }
+
+  .record-table {
+    min-width:
+      860px;
+  }
+
+  .record-name {
+    font-size:
+      .64rem;
+  }
+
+  .record-time {
+    font-size:
+      .79rem;
+  }
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+  @page {
+    size:
+      landscape;
+
+    margin:
+      .25in;
+  }
+
+  body.record-board-page {
+    background:
+      #ffffff;
+  }
+
+  .record-page-shell {
+    width:
+      100%;
+
+    padding:
+      0;
+  }
+
+  .record-board {
+    border-radius:
+      0;
+
+    box-shadow:
+      none;
+  }
+
+  .record-board-nav {
+    display:
+      none;
+  }
+
+  .record-table-wrap {
+    overflow:
+      visible;
+  }
+
+  .record-table {
+    min-width:
+      0;
+  }
+
+
+  /* Restore desktop detail when printing */
+
+  .record {
+    display:
+      grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      max-content;
+
+    grid-template-areas:
+      "name time"
+      "meta meta";
+
+    column-gap:
+      8px;
+
+    row-gap:
+      4px;
+  }
+
+  .record-name {
+    grid-area:
+      name;
+
+    display:
+      block;
+
+    white-space:
+      normal;
+
+    overflow:
+      visible;
+
+    text-overflow:
+      clip;
+  }
+
+  .record-time {
+    grid-area:
+      time;
+
+    width:
+      auto;
+  }
+
+  .record-meta {
+    display:
+      block;
+
+    grid-area:
+      meta;
+  }
 }
