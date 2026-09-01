@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Club Long Course Meters Records</title>
+  <link rel="stylesheet" href="records_board.css" />
+</head>
+<body class="record-board-page">
+  <div class="record-page-shell">
+    <nav class="record-board-nav" aria-label="Record board navigation">
+      <a href="index.html">Top 10</a>
+      <a class="" href="records_scy.html">Short Course Yards</a>
+      <a class="active" href="records_lcm.html">Long Course Meters</a>
+    </nav>
+
+    <section class="record-board" data-record-board data-course="LCM" data-json="Static/top10.json">
+      <header class="record-board-header">
+        <div class="record-gender-heading">Girls Records</div>
+        <div class="record-board-title">
+          <img id="record-club-logo" alt="" />
+          <h1 id="record-club-title">All-Time Records</h1>
+          <div class="course-name">Long Course Meters</div>
+        </div>
+        <div class="record-gender-heading">Boys Records</div>
+      </header>
+
+      <div class="record-table-wrap">
+        <div id="record-status" class="record-status">Loading record data…</div>
+        <table class="record-table" aria-label="Long Course Meters club records">
+          <thead>
+            <tr>
+              <th>10 &amp; Under</th>
+              <th>11-12</th>
+              <th>13-14</th>
+              <th>15 &amp; Over</th>
+              <th class="event-head">Events</th>
+              <th>15 &amp; Over</th>
+              <th>13-14</th>
+              <th>11-12</th>
+              <th>10 &amp; Under</th>
+            </tr>
+          </thead>
+          <tbody id="record-board-body"></tbody>
+        </table>
+      </div>
+
+      <div class="record-legend">
+        <span><strong>Placard:</strong> swimmer/relay • record time • year/meet</span>
+        <span><strong>15 &amp; Over:</strong> fastest of 15-16, 17-18, 15-18, and Open.</span>
+        <span id="data-generated"></span>
+      </div>
+    </section>
+  </div>
+
+  <script src="records_board.js" defer></script>
+</body>
+</html>

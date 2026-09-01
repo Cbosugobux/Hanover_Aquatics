@@ -1,0 +1,965 @@
+:root {
+  /* CHANGE THESE PER CLUB */
+  --brand-primary: #111111;
+  --brand-primary-dark: #000000;
+  --brand-accent: #f58220;
+  --brand-accent-dark: #c95f00;
+
+  --page-bg: #0b0d10;
+  --page-bg-2: #1a1d21;
+
+  --surface: #15191d;
+  --surface-raised: #1d2227;
+
+  --placard: #ffffff;
+  --placard-alt: #f4f5f6;
+
+  --text-main: #ffffff;
+  --text-dark: #15171a;
+  --text-muted: #aeb4bb;
+
+  --border-soft: rgba(255,255,255,.12);
+
+  --shadow:
+    0 14px 34px rgba(0,0,0,.30);
+
+  --radius-lg: 16px;
+  --radius-md: 10px;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body.record-board-page {
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top,
+      var(--page-bg-2) 0%,
+      var(--page-bg) 70%
+    );
+
+  color: var(--text-main);
+}
+
+
+/* =========================================================
+   PAGE SHELL
+   ========================================================= */
+
+.record-page-shell {
+  width: min(1760px, 98%);
+  margin: 0 auto;
+
+  padding: 20px 12px 32px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.record-board-nav {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin: 0 0 18px;
+}
+
+.record-board-nav a {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 9px 18px;
+
+  border:
+    2px solid var(--brand-accent);
+
+  border-radius: 9px;
+
+  background:
+    var(--brand-primary);
+
+  color:
+    #ffffff;
+
+  font-size:
+    .9rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    .01em;
+
+  text-decoration:
+    none;
+
+  transition:
+    background .15s ease,
+    transform .15s ease,
+    box-shadow .15s ease;
+}
+
+.record-board-nav a:hover {
+  background:
+    var(--brand-accent);
+
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 5px 12px rgba(0,0,0,.25);
+}
+
+.record-board-nav a.active {
+  background:
+    var(--brand-accent);
+
+  color:
+    #ffffff;
+}
+
+
+/* =========================================================
+   MAIN RECORD BOARD
+   ========================================================= */
+
+.record-board {
+  overflow: hidden;
+
+  border:
+    1px solid var(--border-soft);
+
+  border-radius:
+    var(--radius-lg);
+
+  background:
+    var(--surface);
+
+  box-shadow:
+    var(--shadow);
+}
+
+
+/* =========================================================
+   RECORD BOARD HEADER
+   ========================================================= */
+
+.record-board-header {
+  display: grid;
+
+  grid-template-columns:
+    minmax(150px, 1fr)
+    minmax(320px, 1.4fr)
+    minmax(150px, 1fr);
+
+  gap: 18px;
+
+  align-items: center;
+
+  padding: 20px 24px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--brand-primary),
+      var(--brand-primary-dark)
+    );
+
+  border-bottom:
+    5px solid var(--brand-accent);
+}
+
+
+/* =========================================================
+   CLUB TITLE / LOGO
+   ========================================================= */
+
+.record-board-title {
+  text-align: center;
+}
+
+.record-board-title img {
+  display: none;
+
+  width: auto;
+  height: auto;
+
+  max-width: 250px;
+  max-height: 82px;
+
+  margin: 0 auto 8px;
+
+  object-fit: contain;
+}
+
+.record-board-title img.ready {
+  display: block;
+}
+
+.record-board-title h1 {
+  margin: 0;
+
+  color:
+    #ffffff;
+
+  font-size:
+    clamp(1.35rem, 2.1vw, 2.2rem);
+
+  line-height:
+    1.08;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .035em;
+
+  text-transform:
+    uppercase;
+}
+
+.record-board-title .course-name {
+  margin-top:
+    7px;
+
+  color:
+    var(--brand-accent);
+
+  font-size:
+    .85rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .14em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   GIRLS / BOYS HEADINGS
+   ========================================================= */
+
+.record-gender-heading {
+  padding:
+    12px 16px;
+
+  border:
+    1px solid rgba(255,255,255,.22);
+
+  border-radius:
+    8px;
+
+  background:
+    rgba(255,255,255,.07);
+
+  color:
+    #ffffff;
+
+  font-size:
+    clamp(1rem, 1.5vw, 1.35rem);
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .055em;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+}
+
+.record-gender-heading:first-child {
+  border-left:
+    5px solid var(--brand-accent);
+}
+
+.record-gender-heading:last-child {
+  border-right:
+    5px solid var(--brand-accent);
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.record-status {
+  padding:
+    22px;
+
+  color:
+    var(--text-muted);
+
+  text-align:
+    center;
+
+  font-weight:
+    700;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.record-table-wrap {
+  width:
+    100%;
+
+  overflow-x:
+    auto;
+
+  -webkit-overflow-scrolling:
+    touch;
+
+  background:
+    var(--surface);
+}
+
+
+/* =========================================================
+   RECORD TABLE
+   ========================================================= */
+
+.record-table {
+  width:
+    100%;
+
+  min-width:
+    1180px;
+
+  border-collapse:
+    separate;
+
+  border-spacing:
+    0;
+
+  table-layout:
+    fixed;
+
+  background:
+    var(--surface);
+}
+
+
+/* =========================================================
+   TABLE GRID
+   ========================================================= */
+
+.record-table th,
+.record-table td {
+  border-right:
+    1px solid #d8dadd;
+
+  border-bottom:
+    1px solid #d8dadd;
+}
+
+
+/* =========================================================
+   AGE HEADERS
+   ========================================================= */
+
+.record-table thead th {
+  padding:
+    11px 6px;
+
+  background:
+    var(--brand-primary);
+
+  color:
+    #ffffff;
+
+  font-size:
+    .82rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .035em;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+
+  border-bottom:
+    4px solid var(--brand-accent);
+}
+
+.record-table thead th.event-head {
+  width:
+    130px;
+
+  background:
+    var(--brand-accent);
+
+  color:
+    #ffffff;
+
+  letter-spacing:
+    .07em;
+}
+
+
+/* =========================================================
+   EVENT COLUMN
+   ========================================================= */
+
+.record-table tbody th.event-cell {
+  padding:
+    9px 6px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--brand-primary),
+      var(--brand-primary-dark)
+    );
+
+  color:
+    #ffffff;
+
+  font-size:
+    .79rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .025em;
+
+  line-height:
+    1.15;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+
+  border-left:
+    3px solid var(--brand-accent);
+
+  border-right:
+    3px solid var(--brand-accent);
+}
+
+
+/* =========================================================
+   SECTION HEADERS
+   ========================================================= */
+
+.record-table tbody tr.section-row th {
+  padding:
+    10px 12px;
+
+  background:
+    var(--surface-raised);
+
+  color:
+    #ffffff;
+
+  border-top:
+    4px solid var(--brand-accent);
+
+  border-bottom:
+    1px solid var(--border-soft);
+
+  font-size:
+    .8rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .13em;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   RECORD PLACARDS
+   ========================================================= */
+
+.record-cell {
+  height:
+    66px;
+
+  padding:
+    7px 8px;
+
+  background:
+    var(--placard);
+
+  color:
+    var(--text-dark);
+
+  vertical-align:
+    middle;
+
+  transition:
+    background .12s ease,
+    box-shadow .12s ease;
+}
+
+.record-table tbody tr:nth-child(even)
+.record-cell {
+  background:
+    var(--placard-alt);
+}
+
+.record-cell:hover {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    inset 0 0 0 2px var(--brand-accent);
+}
+
+
+/* =========================================================
+   EMPTY RECORD CELLS
+   ========================================================= */
+
+.record-cell.empty {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      #15191d,
+      #15191d 8px,
+      #1b2025 8px,
+      #1b2025 16px
+    );
+}
+
+
+/* =========================================================
+   RECORD CONTENT
+   ========================================================= */
+
+.record {
+  display:
+    grid;
+
+  grid-template-columns:
+    minmax(0, 1fr) auto;
+
+  grid-template-areas:
+    "name time"
+    "meta meta";
+
+  gap:
+    3px 8px;
+
+  align-items:
+    baseline;
+
+  line-height:
+    1.1;
+}
+
+.record-name {
+  grid-area:
+    name;
+
+  overflow:
+    hidden;
+
+  color:
+    #14171a;
+
+  font-size:
+    .78rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .015em;
+
+  text-overflow:
+    ellipsis;
+
+  text-transform:
+    uppercase;
+
+  white-space:
+    nowrap;
+}
+
+.record-time {
+  grid-area:
+    time;
+
+  color:
+    var(--brand-primary);
+
+  font-size:
+    .9rem;
+
+  font-weight:
+    900;
+
+  font-variant-numeric:
+    tabular-nums;
+
+  white-space:
+    nowrap;
+}
+
+.record-meta {
+  grid-area:
+    meta;
+
+  overflow:
+    hidden;
+
+  margin-top:
+    2px;
+
+  color:
+    #666d74;
+
+  font-size:
+    .66rem;
+
+  font-weight:
+    650;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+/* =========================================================
+   RELAY RECORDS
+   ========================================================= */
+
+.record-cell.relay {
+  min-height:
+    76px;
+}
+
+.record-cell.relay .record-name {
+  font-size:
+    .68rem;
+
+  line-height:
+    1.12;
+
+  white-space:
+    normal;
+}
+
+
+/* =========================================================
+   LEGEND / FOOTER
+   ========================================================= */
+
+.record-legend {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  justify-content:
+    center;
+
+  gap:
+    8px 24px;
+
+  padding:
+    13px 18px;
+
+  background:
+    var(--brand-primary-dark);
+
+  border-top:
+    4px solid var(--brand-accent);
+
+  color:
+    var(--text-muted);
+
+  font-size:
+    .76rem;
+
+  line-height:
+    1.35;
+}
+
+.record-legend strong {
+  color:
+    #ffffff;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .record-page-shell {
+    width:
+      100%;
+
+    padding:
+      12px 8px 24px;
+  }
+
+  .record-board-header {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      10px;
+
+    padding:
+      16px;
+  }
+
+  .record-gender-heading {
+    display:
+      none;
+  }
+
+  .record-board-title img {
+    max-height:
+      68px;
+  }
+
+  .record-table {
+    min-width:
+      1080px;
+  }
+
+  .record-cell {
+    height:
+      62px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 550px) {
+
+  .record-page-shell {
+    padding:
+      8px 0 20px;
+  }
+
+  .record-board {
+    border-radius:
+      0;
+
+    border-left:
+      0;
+
+    border-right:
+      0;
+  }
+
+  .record-board-nav {
+    padding:
+      0 8px;
+
+    gap:
+      7px;
+  }
+
+  .record-board-nav a {
+    flex:
+      1 1 120px;
+
+    min-height:
+      46px;
+
+    padding:
+      9px 10px;
+
+    font-size:
+      .82rem;
+
+    text-align:
+      center;
+  }
+
+  .record-board-header {
+    padding:
+      14px 12px;
+  }
+
+  .record-board-title img {
+    max-width:
+      210px;
+
+    max-height:
+      60px;
+  }
+
+  .record-board-title h1 {
+    font-size:
+      1.25rem;
+  }
+
+  .record-board-title .course-name {
+    font-size:
+      .72rem;
+  }
+
+  .record-table {
+    min-width:
+      1000px;
+  }
+
+  .record-table thead th {
+    padding:
+      9px 4px;
+
+    font-size:
+      .72rem;
+  }
+
+  .record-cell {
+    height:
+      58px;
+
+    padding:
+      5px 6px;
+  }
+
+  .record-name {
+    font-size:
+      .7rem;
+  }
+
+  .record-time {
+    font-size:
+      .78rem;
+  }
+
+  .record-meta {
+    font-size:
+      .6rem;
+  }
+
+  .record-legend {
+    justify-content:
+      flex-start;
+
+    padding:
+      11px 12px;
+
+    font-size:
+      .7rem;
+  }
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+  @page {
+    size:
+      landscape;
+
+    margin:
+      .25in;
+  }
+
+  body.record-board-page {
+    background:
+      #ffffff;
+  }
+
+  .record-page-shell {
+    width:
+      100%;
+
+    padding:
+      0;
+  }
+
+  .record-board {
+    border-radius:
+      0;
+
+    box-shadow:
+      none;
+  }
+
+  .record-board-nav {
+    display:
+      none;
+  }
+
+  .record-table-wrap {
+    overflow:
+      visible;
+  }
+
+  .record-table {
+    min-width:
+      0;
+  }
+}

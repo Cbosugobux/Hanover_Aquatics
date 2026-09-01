@@ -1,189 +1,370 @@
+:root {
+  --page-bg: #0b0b0b;
+  --page-bg-2: #1a1a1a;
+  --card-bg: #ffffff;
+  --page-text: #111111;
+
+  --brand-primary: #111111;
+  --brand-primary-dark: #000000;
+
+  --brand-accent: #f58220;
+  --brand-accent-dark: #c95f00;
+
+  --brand-text-on-dark: #ffffff;
+
+  --button-bg: #f58220;
+  --button-hover: #c95f00;
+
+  --logo-max-width: 280px;
+}
+
 /* =========================================================
-   SCSC Top Times — Cleaned & Mobile-Safe CSS
+   RESET / BASE
    ========================================================= */
 
-/* -----------------------------
-   Reset & Layout
------------------------------ */
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
 html,
 body {
-  height: 100%;
   margin: 0;
+  padding: 0;
+  min-height: 100%;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to bottom, #ff4500, #000080);
-  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top,
+      var(--page-bg-2) 0%,
+      var(--page-bg) 70%
+    );
+
+  color: var(--brand-text-on-dark);
 }
 
-/* -----------------------------
-   Wrapper / Footer anchor
------------------------------ */
 .wrapper {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  max-width: 1100px;
-  margin: 0 auto;
 }
 
-main.content {
-  flex: 1;
-}
 
-/* Inner content wrapper (critical for mobile scrolling) */
-.content-inner {
-  padding: 16px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
+/* =========================================================
+   HEADER
+   ========================================================= */
 
-/* -----------------------------
-   Header
------------------------------ */
 .header {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 18px 12px;
-  background-color: #000080;
-  text-align: center;
+  justify-content: center;
+  gap: 24px;
+
+  padding: 20px 18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--brand-primary),
+      var(--brand-primary-dark)
+    );
+
+  border-bottom: 5px solid var(--brand-accent);
 }
 
-.header img {
-  max-width: 140px;
+.club-logo {
+  display: block;
+  width: auto;
   height: auto;
-  margin-bottom: 10px;
+  max-width: var(--logo-max-width);
+  max-height: 110px;
+  object-fit: contain;
+  flex: 0 0 auto;
 }
 
 .header h1 {
   margin: 0;
-  font-size: 2.2rem;
-  text-shadow: 2px 2px 5px #000000;
+  color: #ffffff;
+
+  font-size: clamp(1.9rem, 3vw, 3rem);
+  line-height: 1.08;
+  font-weight: 900;
+
+  letter-spacing: .025em;
+  text-align: center;
+
+  text-shadow:
+    2px 2px 5px rgba(0,0,0,.55);
 }
 
-@media (max-width: 600px) {
-  .header h1 {
-    font-size: 1.6rem;
-  }
-}
 
-/* -----------------------------
-   Form Layout
------------------------------ */
-form {
-  margin-bottom: 24px;
-}
+/* =========================================================
+   RECORD BOARD NAVIGATION
+   ========================================================= */
 
-/* Responsive grid */
-.form-row {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+.record-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
+
+  margin: 18px auto 20px;
+  padding: 0 12px;
 }
 
-@media (max-width: 1024px) {
-  .form-row {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.record-links a {
+  display: inline-block;
+
+  padding: 11px 20px;
+
+  border: 2px solid var(--brand-accent);
+  border-radius: 9px;
+
+  background: var(--brand-primary);
+  color: #ffffff;
+
+  font-weight: 900;
+  text-decoration: none;
+
+  box-shadow:
+    0 3px 8px rgba(0,0,0,.25);
+
+  transition:
+    background .15s ease,
+    border-color .15s ease,
+    transform .15s ease,
+    box-shadow .15s ease;
 }
 
-@media (max-width: 720px) {
-  .form-row {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.record-links a:hover {
+  background: var(--brand-accent);
+  border-color: var(--brand-accent);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 12px rgba(0,0,0,.28);
 }
 
-@media (max-width: 480px) {
-  .form-row {
-    grid-template-columns: 1fr;
-  }
+.record-links a:focus-visible {
+  outline: 3px solid var(--brand-accent);
+  outline-offset: 3px;
 }
 
-.form-group {
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.content {
+  flex: 1;
+  width: 100%;
+  padding: 18px 18px 28px;
+}
+
+.content-inner {
+  width: min(1500px, 100%);
+  margin: 0 auto;
+
+  padding: 22px 22px 28px;
+
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+
+  background: rgba(255,255,255,.06);
+
+  box-shadow:
+    0 6px 22px rgba(0,0,0,.28);
+}
+
+
+/* =========================================================
+   RESPONSIVE TOP-10 FILTER GRID
+   ========================================================= */
+
+#filter-form {
+  width: 100%;
+  margin: 0;
+}
+
+#filter-form .form-row {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 18px;
+
+  width: 100%;
+  align-items: end;
+
+  margin: 0 0 24px;
+}
+
+#filter-form .form-group {
   display: flex;
   flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
 }
 
-.form-group label {
-  font-weight: 600;
-  margin-bottom: 6px;
-}
+#filter-form .form-group label {
+  margin-bottom: 7px;
 
-.form-group select,
-.form-group button {
-  padding: 12px 14px;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid #dcdcdc;
-}
-
-.form-group select {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-.form-group button {
-  background-color: #000080;
   color: #ffffff;
+
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+#filter-form .form-group select {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+  height: 54px;
+
+  padding: 0 42px 0 15px;
+
+  border: 2px solid transparent;
+  border-radius: 9px;
+
+  background: #ffffff;
+  color: #111111;
+
+  font: inherit;
+  font-size: 1rem;
+
   cursor: pointer;
-  border: none;
-  transition: background-color 0.2s ease;
+
+  box-shadow:
+    0 2px 6px rgba(0,0,0,.16);
 }
 
-.form-group button:hover {
-  background-color: #001aa8;
+#filter-form .form-group select:hover {
+  border-color: var(--brand-accent);
 }
 
-/* -----------------------------
-   Results Header
------------------------------ */
-h2 {
-  margin: 12px 0 10px;
+#filter-form .form-group select:focus {
+  outline: none;
+
+  border-color: var(--brand-accent);
+
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,.25);
+}
+
+
+/* =========================================================
+   RESULTS HEADING
+   ========================================================= */
+
+.results-heading {
+  margin: 0 0 14px;
   text-align: center;
 }
 
-/* -----------------------------
-   Table (Desktop / Tablet)
------------------------------ */
-table {
-  width: 100%;
-  min-width: 520px; /* enables scroll on tablets */
-  border-collapse: collapse;
-  background-color: #ffffff;
-  color: #000000;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+.results-heading h2 {
+  margin: 0;
+  color: #ffffff;
+
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  font-weight: 900;
+
+  letter-spacing: .025em;
 }
 
-thead th {
-  background-color: #ff8c00;
-  color: #ffffff;
-  text-align: left;
-  padding: 12px;
+#results-subtitle {
+  min-height: 1.4em;
+
+  margin: 6px 0 0;
+
+  color: #e2e2e2;
+
+  font-size: .98rem;
   font-weight: 700;
 }
 
-tbody td {
-  padding: 12px;
-  border-bottom: 1px solid #eee;
+
+/* =========================================================
+   RESULTS TABLE
+   ========================================================= */
+
+.table-wrap,
+.table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  -webkit-overflow-scrolling: touch;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 4px 14px rgba(0,0,0,.28);
 }
 
-/* -----------------------------
-   Row animation (used by JS)
------------------------------ */
+table {
+  width: 100%;
+  min-width: 760px;
+
+  border-collapse: collapse;
+
+  background: var(--card-bg);
+  color: var(--page-text);
+}
+
+thead th {
+  padding: 15px 14px;
+
+  background: var(--brand-primary);
+  color: #ffffff;
+
+  text-align: left;
+  font-weight: 900;
+
+  white-space: nowrap;
+
+  border-bottom: 4px solid var(--brand-accent);
+}
+
+tbody td {
+  padding: 15px 14px;
+
+  border-bottom: 1px solid #e8e8e8;
+
+  vertical-align: middle;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr:nth-child(even) {
+  background: #f7f7f7;
+}
+
+tbody tr:hover {
+  background: #eeeeee;
+}
+
+
+/* =========================================================
+   ROW REVEAL
+   ========================================================= */
+
 #results-table tr {
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  transform: translateY(5px);
+
+  transition:
+    opacity .18s ease,
+    transform .18s ease;
 }
 
 #results-table tr.show {
@@ -191,73 +372,201 @@ tbody td {
   transform: translateY(0);
 }
 
-/* -----------------------------
-   Mobile: Table → Cards
------------------------------ */
-@media (max-width: 600px) {
-  table {
-    min-width: 0;
-    background: transparent;
-    box-shadow: none;
+
+/* =========================================================
+   STATUS / ERROR
+   ========================================================= */
+
+.status-message,
+.table-status {
+  text-align: center;
+
+  padding: 26px 12px;
+
+  color: #666666;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+  margin-top: auto;
+
+  padding: 15px;
+
+  background: var(--brand-primary-dark);
+
+  border-top: 4px solid var(--brand-accent);
+
+  color: #ffffff;
+
+  text-align: center;
+
+  font-size: .9rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .header {
+    gap: 18px;
   }
 
-  thead {
+  .club-logo {
+    max-width: 220px;
+    max-height: 90px;
+  }
+
+  #filter-form .form-row {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+  }
+
+  .content-inner {
+    padding: 18px 16px 24px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 550px) {
+
+  .header {
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding: 16px 12px;
+  }
+
+  .club-logo {
+    max-width: 220px;
+    max-height: 90px;
+  }
+
+  .header h1 {
+    font-size:
+      clamp(1.5rem, 8vw, 2.15rem);
+  }
+
+  .content {
+    padding: 12px 8px 20px;
+  }
+
+  .content-inner {
+    padding: 14px 12px 22px;
+  }
+
+  #filter-form .form-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  #filter-form .form-group select {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .record-links {
+    gap: 8px;
+    margin: 12px auto 14px;
+  }
+
+  .record-links a {
+    flex: 1 1 140px;
+
+    text-align: center;
+
+    padding: 10px 12px;
+  }
+
+  table {
+    min-width: 680px;
+  }
+
+  thead th,
+  tbody td {
+    padding: 12px 10px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .header h1 {
+    font-size: 1.45rem;
+  }
+
+  .content-inner {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .header {
+    background: #ffffff;
+    border-bottom: 2px solid #000000;
+  }
+
+  .header h1 {
+    color: #000000;
+    text-shadow: none;
+  }
+
+  .record-links {
     display: none;
   }
 
-  table,
-  tbody,
-  tr,
-  td {
-    display: block;
-    width: 100%;
+  .content {
+    padding: 0;
   }
 
-  #results-table tr {
-    background-color: #ffffff;
+  .content-inner {
+    box-shadow: none;
+    background: #ffffff;
+    padding: 0;
+  }
+
+  #filter-form .form-group label,
+  .results-heading h2,
+  #results-subtitle {
     color: #000000;
-    border-radius: 14px;
-    margin: 10px 4px 16px;
-    padding: 8px 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
-  #results-table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    border: none;
-    padding: 10px 4px;
+  .table-wrap,
+  .table-wrapper {
+    box-shadow: none;
+    overflow: visible;
   }
-
-  #results-table td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: #666;
-    margin-right: 12px;
-  }
-}
-
-/* -----------------------------
-   Footer
------------------------------ */
-footer {
-  text-align: center;
-  padding: 12px;
-  font-size: 0.9rem;
-  background: rgba(0, 0, 0, 0.25);
-}
-/* Center filter controls as a group */
-.form-row {
-  display: flex;
-  justify-content: center;   /* center as a block */
-  align-items: flex-end;
-  gap: 20px;
-  width: 100%;
-}
-
-/* Prevent controls from stretching too wide */
-.form-group {
-  min-width: 160px;
-  max-width: 200px;
 }

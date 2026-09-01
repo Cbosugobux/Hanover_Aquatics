@@ -1,28 +1,227 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Swim Club All-Time Top 10</title>
+
   <link rel="stylesheet" href="Static/style.css" />
 </head>
+
 <body>
   <div class="wrapper">
+
     <header class="header">
-      <img id="club-logo" alt="" style="display:none" />
-      <h1 id="club-heading">ALL-TIME TOP 10 TIMES</h1>
+      <img
+        id="club-logo"
+        class="club-logo"
+        alt=""
+        style="display:none"
+      />
+
+      <h1 id="club-heading">
+        ALL-TIME TOP 10 TIMES
+      </h1>
     </header>
-    <main class="content"><div class="content-inner">
-      <form id="filter-form">
-        <div class="form-group"><label for="course">Course</label><select id="course"></select></div>
-        <div class="form-group"><label for="gender">Category</label><select id="gender"></select></div>
-        <div class="form-group"><label for="age_group_desc">Age Group</label><select id="age_group_desc"></select></div>
-        <div class="form-group"><label for="event">Event</label><select id="event"></select></div>
-      </form>
-      <table><thead><tr><th>Rank</th><th>Name</th><th>Swim Time</th><th>Date</th><th>Meet</th></tr></thead><tbody id="results-table"><tr><td colspan="5" style="text-align:center">Loading…</td></tr></tbody></table>
-    </div></main>
-    <footer><p>All-Time Top 10</p></footer>
+
+
+    <!-- =====================================================
+         RECORD BOARD NAVIGATION
+         ===================================================== -->
+
+    <!-- TOP10_RECORD_BOARD_NAV_START -->
+    <nav
+      class="record-links"
+      aria-label="Club record boards"
+    >
+      <a href="records_scy.html">
+        SCY Records
+      </a>
+
+      <a href="records_lcm.html">
+        LCM Records
+      </a>
+    </nav>
+    <!-- TOP10_RECORD_BOARD_NAV_END -->
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="content">
+
+      <div class="content-inner">
+
+        <!-- =================================================
+             TOP 10 FILTERS
+             Desktop: 4 across
+             Tablet:  2 x 2
+             Mobile:  1 column
+             ================================================= -->
+
+        <form
+          id="filter-form"
+          autocomplete="off"
+        >
+
+          <div class="form-row">
+
+            <div class="form-group">
+              <label for="course">
+                Course
+              </label>
+
+              <select
+                id="course"
+                name="course"
+              ></select>
+            </div>
+
+
+            <div class="form-group">
+              <label for="gender">
+                Category
+              </label>
+
+              <select
+                id="gender"
+                name="gender"
+              ></select>
+            </div>
+
+
+            <div class="form-group">
+              <label for="age_group_desc">
+                Age Group
+              </label>
+
+              <select
+                id="age_group_desc"
+                name="age_group_desc"
+              ></select>
+            </div>
+
+
+            <div class="form-group">
+              <label for="event">
+                Event
+              </label>
+
+              <select
+                id="event"
+                name="event"
+              ></select>
+            </div>
+
+          </div>
+
+        </form>
+
+
+        <!-- =================================================
+             RESULTS HEADING
+             ================================================= -->
+
+        <div class="results-heading">
+
+          <h2 id="results-title">
+            Results
+          </h2>
+
+          <p
+            id="results-subtitle"
+            aria-live="polite"
+          ></p>
+
+        </div>
+
+
+        <!-- =================================================
+             RESULTS TABLE
+             ================================================= -->
+
+        <div class="table-wrap">
+
+          <table aria-label="All-Time Top 10 Swim Times">
+
+            <thead>
+              <tr>
+                <th scope="col">
+                  Rank
+                </th>
+
+                <th scope="col">
+                  Name
+                </th>
+
+                <th scope="col">
+                  Swim Time
+                </th>
+
+                <th scope="col">
+                  Date
+                </th>
+
+                <th scope="col">
+                  Meet
+                </th>
+              </tr>
+            </thead>
+
+
+            <tbody id="results-table">
+
+              <tr class="show">
+                <td
+                  colspan="5"
+                  style="text-align:center"
+                >
+                  Loading…
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <noscript>
+          <p class="status-message">
+            This page requires JavaScript enabled
+            to display Top 10 results.
+          </p>
+        </noscript>
+
+      </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+      <p>
+        All-Time Top 10
+      </p>
+    </footer>
+
   </div>
-  <script src="top10_dashboard.js" defer></script>
+
+
+  <!-- =======================================================
+       TOP 10 DATA / DASHBOARD
+       ======================================================= -->
+
+  <script
+    src="top10_dashboard.js"
+    defer
+  ></script>
+
 </body>
 </html>
