@@ -1,8 +1,7 @@
 :root {
-  --page-bg: #0b0b0b;
-  --page-bg-2: #1a1a1a;
-  --card-bg: #ffffff;
-  --page-text: #111111;
+  /* =========================================================
+     HANOVER AQUATICS BRANDING
+     ========================================================= */
 
   --brand-primary: #111111;
   --brand-primary-dark: #000000;
@@ -10,13 +9,28 @@
   --brand-accent: #f58220;
   --brand-accent-dark: #c95f00;
 
-  --brand-text-on-dark: #ffffff;
+  --page-bg: #08090b;
+  --page-bg-2: #1d2024;
 
-  --button-bg: #f58220;
-  --button-hover: #c95f00;
+  --surface: #121518;
+  --surface-raised: #1d2125;
 
-  --logo-max-width: 280px;
+  --placard: #ffffff;
+  --placard-alt: #f4f4f4;
+
+  --text-main: #ffffff;
+  --text-dark: #15171a;
+  --text-muted: #adb3b9;
+
+  --border-soft: rgba(255, 255, 255, .12);
+
+  --shadow:
+    0 14px 34px rgba(0, 0, 0, .34);
+
+  --radius-lg: 16px;
+  --radius-md: 10px;
 }
+
 
 /* =========================================================
    RESET / BASE
@@ -33,104 +47,97 @@ body {
   min-height: 100%;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+body.record-board-page {
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
 
   background:
     radial-gradient(
       circle at top,
       var(--page-bg-2) 0%,
-      var(--page-bg) 70%
+      var(--page-bg) 72%
     );
 
-  color: var(--brand-text-on-dark);
-}
-
-.wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  color: var(--text-main);
 }
 
 
 /* =========================================================
-   HEADER
+   PAGE SHELL
    ========================================================= */
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
+.record-page-shell {
+  width: min(1760px, 98%);
 
-  padding: 20px 18px;
+  margin: 0 auto;
 
-  background:
-    linear-gradient(
-      180deg,
-      var(--brand-primary),
-      var(--brand-primary-dark)
-    );
-
-  border-bottom: 5px solid var(--brand-accent);
-}
-
-.club-logo {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: var(--logo-max-width);
-  max-height: 110px;
-  object-fit: contain;
-  flex: 0 0 auto;
-}
-
-.header h1 {
-  margin: 0;
-  color: #ffffff;
-
-  font-size: clamp(1.9rem, 3vw, 3rem);
-  line-height: 1.08;
-  font-weight: 900;
-
-  letter-spacing: .025em;
-  text-align: center;
-
-  text-shadow:
-    2px 2px 5px rgba(0,0,0,.55);
+  padding:
+    20px
+    12px
+    32px;
 }
 
 
 /* =========================================================
-   RECORD BOARD NAVIGATION
+   NAVIGATION
    ========================================================= */
 
-.record-links {
+.record-board-nav {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
 
-  margin: 18px auto 20px;
-  padding: 0 12px;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin:
+    0
+    0
+    18px;
 }
 
-.record-links a {
-  display: inline-block;
+.record-board-nav a {
+  display: inline-flex;
 
-  padding: 11px 20px;
+  align-items: center;
+  justify-content: center;
 
-  border: 2px solid var(--brand-accent);
-  border-radius: 9px;
+  min-height: 44px;
 
-  background: var(--brand-primary);
-  color: #ffffff;
+  padding:
+    9px
+    18px;
 
-  font-weight: 900;
-  text-decoration: none;
+  border:
+    2px solid var(--brand-accent);
+
+  border-radius:
+    9px;
+
+  background:
+    var(--brand-primary);
+
+  color:
+    #ffffff;
+
+  font-size:
+    .9rem;
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    .01em;
+
+  text-decoration:
+    none;
 
   box-shadow:
-    0 3px 8px rgba(0,0,0,.25);
+    0 3px 8px rgba(0, 0, 0, .22);
 
   transition:
     background .15s ease,
@@ -139,386 +146,1146 @@ body {
     box-shadow .15s ease;
 }
 
-.record-links a:hover {
-  background: var(--brand-accent);
-  border-color: var(--brand-accent);
+.record-board-nav a:hover {
+  background:
+    var(--brand-accent);
 
-  transform: translateY(-1px);
+  border-color:
+    var(--brand-accent);
+
+  transform:
+    translateY(-1px);
 
   box-shadow:
-    0 5px 12px rgba(0,0,0,.28);
+    0 5px 12px rgba(0, 0, 0, .28);
 }
 
-.record-links a:focus-visible {
-  outline: 3px solid var(--brand-accent);
-  outline-offset: 3px;
+.record-board-nav a:focus-visible {
+  outline:
+    3px solid var(--brand-accent);
+
+  outline-offset:
+    3px;
+}
+
+.record-board-nav a.active {
+  background:
+    var(--brand-accent);
+
+  border-color:
+    var(--brand-accent);
+
+  color:
+    #ffffff;
 }
 
 
 /* =========================================================
-   MAIN CONTENT
+   MAIN RECORD BOARD
    ========================================================= */
 
-.content {
-  flex: 1;
-  width: 100%;
-  padding: 18px 18px 28px;
-}
+.record-board {
+  overflow: hidden;
 
-.content-inner {
-  width: min(1500px, 100%);
-  margin: 0 auto;
+  border:
+    1px solid var(--border-soft);
 
-  padding: 22px 22px 28px;
+  border-radius:
+    var(--radius-lg);
 
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px;
-
-  background: rgba(255,255,255,.06);
+  background:
+    var(--surface);
 
   box-shadow:
-    0 6px 22px rgba(0,0,0,.28);
+    var(--shadow);
 }
 
 
 /* =========================================================
-   RESPONSIVE TOP-10 FILTER GRID
+   RECORD BOARD HEADER
    ========================================================= */
 
-#filter-form {
-  width: 100%;
-  margin: 0;
-}
-
-#filter-form .form-row {
+.record-board-header {
   display: grid;
 
   grid-template-columns:
-    repeat(4, minmax(0, 1fr));
+    minmax(150px, 1fr)
+    minmax(320px, 1.4fr)
+    minmax(150px, 1fr);
 
-  gap: 18px;
+  gap:
+    18px;
 
-  width: 100%;
-  align-items: end;
+  align-items:
+    center;
 
-  margin: 0 0 24px;
-}
+  padding:
+    20px
+    24px;
 
-#filter-form .form-group {
-  display: flex;
-  flex-direction: column;
+  background:
+    linear-gradient(
+      180deg,
+      #171717 0%,
+      var(--brand-primary-dark) 100%
+    );
 
-  width: 100%;
-  min-width: 0;
-}
-
-#filter-form .form-group label {
-  margin-bottom: 7px;
-
-  color: #ffffff;
-
-  font-size: 1.05rem;
-  font-weight: 900;
-}
-
-#filter-form .form-group select {
-  display: block;
-
-  width: 100%;
-  min-width: 0;
-  height: 54px;
-
-  padding: 0 42px 0 15px;
-
-  border: 2px solid transparent;
-  border-radius: 9px;
-
-  background: #ffffff;
-  color: #111111;
-
-  font: inherit;
-  font-size: 1rem;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 2px 6px rgba(0,0,0,.16);
-}
-
-#filter-form .form-group select:hover {
-  border-color: var(--brand-accent);
-}
-
-#filter-form .form-group select:focus {
-  outline: none;
-
-  border-color: var(--brand-accent);
-
-  box-shadow:
-    0 0 0 3px rgba(255,255,255,.25);
+  border-bottom:
+    5px solid var(--brand-accent);
 }
 
 
 /* =========================================================
-   RESULTS HEADING
+   CLUB TITLE / LOGO
    ========================================================= */
 
-.results-heading {
-  margin: 0 0 14px;
-  text-align: center;
+.record-board-title {
+  text-align:
+    center;
 }
 
-.results-heading h2 {
-  margin: 0;
-  color: #ffffff;
+.record-board-title img {
+  display:
+    none;
 
-  font-size: clamp(1.45rem, 2vw, 2rem);
-  font-weight: 900;
+  width:
+    auto;
 
-  letter-spacing: .025em;
+  height:
+    auto;
+
+  max-width:
+    250px;
+
+  max-height:
+    82px;
+
+  margin:
+    0 auto 8px;
+
+  object-fit:
+    contain;
 }
 
-#results-subtitle {
-  min-height: 1.4em;
+.record-board-title img.ready {
+  display:
+    block;
+}
 
-  margin: 6px 0 0;
+.record-board-title h1 {
+  margin:
+    0;
 
-  color: #e2e2e2;
+  color:
+    #ffffff;
 
-  font-size: .98rem;
-  font-weight: 700;
+  font-size:
+    clamp(1.35rem, 2.1vw, 2.2rem);
+
+  line-height:
+    1.08;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .035em;
+
+  text-transform:
+    uppercase;
+}
+
+.record-board-title .course-name {
+  margin-top:
+    7px;
+
+  color:
+    var(--brand-accent);
+
+  font-size:
+    .85rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .14em;
+
+  text-transform:
+    uppercase;
 }
 
 
 /* =========================================================
-   RESULTS TABLE
+   GIRLS / BOYS HEADINGS
    ========================================================= */
 
-.table-wrap,
-.table-wrapper {
-  width: 100%;
+.record-gender-heading {
+  padding:
+    12px
+    16px;
 
-  overflow-x: auto;
+  border:
+    1px solid rgba(255, 255, 255, .20);
 
-  -webkit-overflow-scrolling: touch;
+  border-radius:
+    8px;
 
-  border-radius: 12px;
+  background:
+    rgba(255, 255, 255, .065);
 
-  box-shadow:
-    0 4px 14px rgba(0,0,0,.28);
+  color:
+    #ffffff;
+
+  font-size:
+    clamp(1rem, 1.5vw, 1.35rem);
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .055em;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
 }
 
-table {
-  width: 100%;
-  min-width: 760px;
-
-  border-collapse: collapse;
-
-  background: var(--card-bg);
-  color: var(--page-text);
+.record-gender-heading:first-child {
+  border-left:
+    5px solid var(--brand-accent);
 }
 
-thead th {
-  padding: 15px 14px;
-
-  background: var(--brand-primary);
-  color: #ffffff;
-
-  text-align: left;
-  font-weight: 900;
-
-  white-space: nowrap;
-
-  border-bottom: 4px solid var(--brand-accent);
-}
-
-tbody td {
-  padding: 15px 14px;
-
-  border-bottom: 1px solid #e8e8e8;
-
-  vertical-align: middle;
-}
-
-tbody tr:last-child td {
-  border-bottom: 0;
-}
-
-tbody tr:nth-child(even) {
-  background: #f7f7f7;
-}
-
-tbody tr:hover {
-  background: #eeeeee;
+.record-gender-heading:last-child {
+  border-right:
+    5px solid var(--brand-accent);
 }
 
 
 /* =========================================================
-   ROW REVEAL
+   STATUS
    ========================================================= */
 
-#results-table tr {
-  opacity: 0;
+.record-status {
+  padding:
+    22px;
 
-  transform: translateY(5px);
+  color:
+    var(--text-muted);
+
+  text-align:
+    center;
+
+  font-weight:
+    700;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
+.record-table-wrap {
+  width:
+    100%;
+
+  overflow-x:
+    auto;
+
+  overscroll-behavior-x:
+    contain;
+
+  -webkit-overflow-scrolling:
+    touch;
+
+  background:
+    var(--surface);
+
+  scrollbar-color:
+    var(--brand-accent)
+    var(--surface-raised);
+}
+
+
+/* =========================================================
+   RECORD TABLE
+   ========================================================= */
+
+.record-table {
+  width:
+    100%;
+
+  min-width:
+    1180px;
+
+  border-collapse:
+    separate;
+
+  border-spacing:
+    0;
+
+  table-layout:
+    fixed;
+
+  background:
+    var(--surface);
+}
+
+
+/* =========================================================
+   TABLE GRID
+   ========================================================= */
+
+.record-table th,
+.record-table td {
+  border-right:
+    1px solid #d8dadd;
+
+  border-bottom:
+    1px solid #d8dadd;
+}
+
+
+/* =========================================================
+   AGE GROUP HEADERS
+   ========================================================= */
+
+.record-table thead th {
+  padding:
+    11px
+    6px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #191919,
+      #080808
+    );
+
+  color:
+    #ffffff;
+
+  font-size:
+    .82rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .035em;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+
+  border-bottom:
+    4px solid var(--brand-accent);
+}
+
+.record-table thead th.event-head {
+  width:
+    130px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--brand-accent),
+      var(--brand-accent-dark)
+    );
+
+  color:
+    #ffffff;
+
+  letter-spacing:
+    .07em;
+}
+
+
+/* =========================================================
+   EVENT COLUMN
+   ========================================================= */
+
+.record-table tbody th.event-cell {
+  padding:
+    9px
+    6px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #181818,
+      #050505
+    );
+
+  color:
+    #ffffff;
+
+  font-size:
+    .79rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .025em;
+
+  line-height:
+    1.15;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+
+  border-left:
+    3px solid var(--brand-accent);
+
+  border-right:
+    3px solid var(--brand-accent);
+}
+
+
+/* =========================================================
+   SECTION HEADERS
+   ========================================================= */
+
+.record-table tbody tr.section-row th {
+  padding:
+    10px
+    12px;
+
+  background:
+    var(--surface-raised);
+
+  color:
+    #ffffff;
+
+  border-top:
+    4px solid var(--brand-accent);
+
+  border-bottom:
+    1px solid var(--border-soft);
+
+  font-size:
+    .8rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .13em;
+
+  text-align:
+    center;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   RECORD PLACARDS
+   ========================================================= */
+
+.record-cell {
+  height:
+    66px;
+
+  padding:
+    7px
+    8px;
+
+  background:
+    var(--placard);
+
+  color:
+    var(--text-dark);
+
+  vertical-align:
+    middle;
 
   transition:
-    opacity .18s ease,
-    transform .18s ease;
+    background .12s ease,
+    box-shadow .12s ease;
 }
 
-#results-table tr.show {
-  opacity: 1;
-  transform: translateY(0);
+.record-table tbody tr:nth-child(even)
+.record-cell {
+  background:
+    var(--placard-alt);
+}
+
+
+/* Only use hover where a real hover pointer exists. */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .record-cell:hover {
+    position:
+      relative;
+
+    z-index:
+      2;
+
+    background:
+      #ffffff;
+
+    box-shadow:
+      inset 0 0 0 2px var(--brand-accent);
+  }
 }
 
 
 /* =========================================================
-   STATUS / ERROR
+   EMPTY RECORD CELLS
    ========================================================= */
 
-.status-message,
-.table-status {
-  text-align: center;
-
-  padding: 26px 12px;
-
-  color: #666666;
+.record-cell.empty {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      #101214,
+      #101214 8px,
+      #181b1e 8px,
+      #181b1e 16px
+    );
 }
 
 
 /* =========================================================
-   FOOTER
+   RECORD CONTENT — DESKTOP
    ========================================================= */
 
-footer {
-  margin-top: auto;
+.record {
+  display:
+    grid;
 
-  padding: 15px;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
 
-  background: var(--brand-primary-dark);
+  grid-template-areas:
+    "name time"
+    "meta meta";
 
-  border-top: 4px solid var(--brand-accent);
+  gap:
+    3px
+    8px;
 
-  color: #ffffff;
+  align-items:
+    baseline;
 
-  text-align: center;
-
-  font-size: .9rem;
+  line-height:
+    1.1;
 }
 
-footer p {
-  margin: 0;
+.record-name {
+  grid-area:
+    name;
+
+  overflow:
+    hidden;
+
+  color:
+    #14171a;
+
+  font-size:
+    .78rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .015em;
+
+  text-overflow:
+    ellipsis;
+
+  text-transform:
+    uppercase;
+
+  white-space:
+    nowrap;
+}
+
+.record-time {
+  grid-area:
+    time;
+
+  color:
+    #111111;
+
+  font-size:
+    .9rem;
+
+  font-weight:
+    900;
+
+  font-variant-numeric:
+    tabular-nums;
+
+  white-space:
+    nowrap;
+}
+
+.record-meta {
+  grid-area:
+    meta;
+
+  overflow:
+    hidden;
+
+  margin-top:
+    2px;
+
+  color:
+    #666d74;
+
+  font-size:
+    .66rem;
+
+  font-weight:
+    650;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+/* =========================================================
+   RELAY RECORDS
+   ========================================================= */
+
+.record-cell.relay {
+  min-height:
+    76px;
+}
+
+.record-cell.relay .record-name {
+  font-size:
+    .68rem;
+
+  line-height:
+    1.12;
+
+  white-space:
+    normal;
+}
+
+
+/* =========================================================
+   LEGEND / FOOTER
+   ========================================================= */
+
+.record-legend {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  justify-content:
+    center;
+
+  gap:
+    8px
+    24px;
+
+  padding:
+    13px
+    18px;
+
+  background:
+    #050505;
+
+  border-top:
+    4px solid var(--brand-accent);
+
+  color:
+    var(--text-muted);
+
+  font-size:
+    .76rem;
+
+  line-height:
+    1.35;
+}
+
+.record-legend strong {
+  color:
+    #ffffff;
 }
 
 
 /* =========================================================
    TABLET
+   551px – 900px
+
+   NAME + TIME ONLY
    ========================================================= */
 
 @media (max-width: 900px) {
 
-  .header {
-    gap: 18px;
+  .record-page-shell {
+    width:
+      100%;
+
+    padding:
+      12px
+      8px
+      24px;
   }
 
-  .club-logo {
-    max-width: 220px;
-    max-height: 90px;
-  }
 
-  #filter-form .form-row {
+  /* ---------------------------------------------
+     Header
+     --------------------------------------------- */
+
+  .record-board-header {
     grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+      1fr;
 
-    gap: 14px;
+    gap:
+      10px;
+
+    padding:
+      16px;
   }
 
-  .content-inner {
-    padding: 18px 16px 24px;
+  .record-gender-heading {
+    display:
+      none;
+  }
+
+  .record-board-title img {
+    max-width:
+      230px;
+
+    max-height:
+      68px;
+  }
+
+
+  /* ---------------------------------------------
+     Board width
+     --------------------------------------------- */
+
+  .record-table {
+    min-width:
+      980px;
+  }
+
+
+  /* ---------------------------------------------
+     Compact record cell
+     --------------------------------------------- */
+
+  .record-cell {
+    height:
+      64px;
+
+    padding:
+      7px
+      8px;
+  }
+
+
+  /* ---------------------------------------------
+     Tablet placard:
+       NAME
+       TIME
+     --------------------------------------------- */
+
+  .record {
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+
+    justify-content:
+      center;
+
+    gap:
+      4px;
+
+    line-height:
+      1.1;
+  }
+
+  .record-name {
+    width:
+      100%;
+
+    overflow:
+      hidden;
+
+    color:
+      #15171a;
+
+    font-size:
+      .74rem;
+
+    line-height:
+      1.08;
+
+    font-weight:
+      900;
+
+    white-space:
+      normal;
+
+    text-overflow:
+      clip;
+
+    display:
+      -webkit-box;
+
+    -webkit-line-clamp:
+      2;
+
+    -webkit-box-orient:
+      vertical;
+  }
+
+  .record-time {
+    width:
+      100%;
+
+    color:
+      #111111;
+
+    font-size:
+      .88rem;
+
+    line-height:
+      1;
+
+    font-weight:
+      900;
+
+    text-align:
+      left;
+  }
+
+
+  /*
+    Hide year / meet on tablet.
+  */
+
+  .record-meta {
+    display:
+      none;
+  }
+
+
+  /* Relay names can run to two lines. */
+
+  .record-cell.relay .record-name {
+    font-size:
+      .67rem;
+
+    line-height:
+      1.08;
   }
 }
 
 
 /* =========================================================
    MOBILE
+   <= 550px
+
+   NAME + TIME ONLY
    ========================================================= */
 
 @media (max-width: 550px) {
 
-  .header {
-    flex-direction: column;
-
-    gap: 12px;
-
-    padding: 16px 12px;
+  .record-page-shell {
+    padding:
+      8px
+      0
+      20px;
   }
 
-  .club-logo {
-    max-width: 220px;
-    max-height: 90px;
+  .record-board {
+    border-radius:
+      0;
+
+    border-left:
+      0;
+
+    border-right:
+      0;
   }
 
-  .header h1 {
+
+  /* ---------------------------------------------
+     Navigation
+     --------------------------------------------- */
+
+  .record-board-nav {
+    padding:
+      0
+      8px;
+
+    gap:
+      7px;
+  }
+
+  .record-board-nav a {
+    flex:
+      1 1 120px;
+
+    min-height:
+      46px;
+
+    padding:
+      9px
+      10px;
+
     font-size:
-      clamp(1.5rem, 8vw, 2.15rem);
+      .82rem;
+
+    text-align:
+      center;
   }
 
-  .content {
-    padding: 12px 8px 20px;
+
+  /* ---------------------------------------------
+     Header
+     --------------------------------------------- */
+
+  .record-board-header {
+    padding:
+      14px
+      12px;
   }
 
-  .content-inner {
-    padding: 14px 12px 22px;
+  .record-board-title img {
+    max-width:
+      210px;
+
+    max-height:
+      60px;
   }
 
-  #filter-form .form-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  .record-board-title h1 {
+    font-size:
+      1.25rem;
   }
 
-  #filter-form .form-group select {
-    height: 50px;
-    font-size: 16px;
+  .record-board-title .course-name {
+    font-size:
+      .72rem;
   }
 
-  .record-links {
-    gap: 8px;
-    margin: 12px auto 14px;
+
+  /* ---------------------------------------------
+     Board dimensions
+     --------------------------------------------- */
+
+  .record-table {
+    min-width:
+      900px;
   }
 
-  .record-links a {
-    flex: 1 1 140px;
+  .record-table thead th {
+    padding:
+      9px
+      4px;
 
-    text-align: center;
-
-    padding: 10px 12px;
+    font-size:
+      .7rem;
   }
 
-  table {
-    min-width: 680px;
+  .record-table thead th.event-head {
+    width:
+      100px;
   }
 
-  thead th,
-  tbody td {
-    padding: 12px 10px;
+  .record-table tbody th.event-cell {
+    padding:
+      6px
+      4px;
+
+    font-size:
+      .68rem;
+
+    line-height:
+      1.08;
+  }
+
+
+  /* ---------------------------------------------
+     Compact mobile placard
+     --------------------------------------------- */
+
+  .record-cell {
+    height:
+      61px;
+
+    padding:
+      6px
+      7px;
+  }
+
+  .record {
+    display:
+      flex;
+
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+
+    justify-content:
+      center;
+
+    gap:
+      4px;
+  }
+
+  .record-name {
+    width:
+      100%;
+
+    overflow:
+      hidden;
+
+    color:
+      #15171a;
+
+    font-size:
+      .68rem;
+
+    line-height:
+      1.08;
+
+    font-weight:
+      900;
+
+    white-space:
+      normal;
+
+    text-overflow:
+      clip;
+
+    display:
+      -webkit-box;
+
+    -webkit-line-clamp:
+      2;
+
+    -webkit-box-orient:
+      vertical;
+  }
+
+  .record-time {
+    width:
+      100%;
+
+    color:
+      #111111;
+
+    font-size:
+      .82rem;
+
+    line-height:
+      1;
+
+    font-weight:
+      900;
+
+    text-align:
+      left;
+  }
+
+  .record-meta {
+    display:
+      none;
+  }
+
+
+  /* Relay names */
+
+  .record-cell.relay .record-name {
+    font-size:
+      .62rem;
+
+    line-height:
+      1.07;
+  }
+
+
+  /* Footer */
+
+  .record-legend {
+    justify-content:
+      flex-start;
+
+    padding:
+      11px
+      12px;
+
+    font-size:
+      .7rem;
   }
 }
 
 
 /* =========================================================
    VERY SMALL PHONES
+   <= 380px
    ========================================================= */
 
 @media (max-width: 380px) {
 
-  .header h1 {
-    font-size: 1.45rem;
+  .record-board-nav a {
+    flex:
+      1 1 100%;
+
+    width:
+      100%;
   }
 
-  .content-inner {
-    padding-left: 8px;
-    padding-right: 8px;
+  .record-board-title img {
+    max-width:
+      185px;
+
+    max-height:
+      54px;
+  }
+
+  .record-board-title h1 {
+    font-size:
+      1.12rem;
+  }
+
+  .record-table {
+    min-width:
+      860px;
+  }
+
+  .record-name {
+    font-size:
+      .65rem;
+  }
+
+  .record-time {
+    font-size:
+      .79rem;
   }
 }
 
@@ -529,44 +1296,102 @@ footer p {
 
 @media print {
 
-  body {
-    background: #ffffff;
-    color: #000000;
+  @page {
+    size:
+      landscape;
+
+    margin:
+      .25in;
   }
 
-  .header {
-    background: #ffffff;
-    border-bottom: 2px solid #000000;
+  body.record-board-page {
+    background:
+      #ffffff;
   }
 
-  .header h1 {
-    color: #000000;
-    text-shadow: none;
+  .record-page-shell {
+    width:
+      100%;
+
+    padding:
+      0;
   }
 
-  .record-links {
-    display: none;
+  .record-board {
+    border-radius:
+      0;
+
+    box-shadow:
+      none;
   }
 
-  .content {
-    padding: 0;
+  .record-board-nav {
+    display:
+      none;
   }
 
-  .content-inner {
-    box-shadow: none;
-    background: #ffffff;
-    padding: 0;
+  .record-table-wrap {
+    overflow:
+      visible;
   }
 
-  #filter-form .form-group label,
-  .results-heading h2,
-  #results-subtitle {
-    color: #000000;
+  .record-table {
+    min-width:
+      0;
   }
 
-  .table-wrap,
-  .table-wrapper {
-    box-shadow: none;
-    overflow: visible;
+  /*
+    Restore full desktop record information
+    when printing.
+  */
+
+  .record {
+    display:
+      grid;
+
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto;
+
+    grid-template-areas:
+      "name time"
+      "meta meta";
+
+    gap:
+      3px
+      8px;
+  }
+
+  .record-name {
+    grid-area:
+      name;
+
+    display:
+      block;
+
+    white-space:
+      nowrap;
+
+    overflow:
+      hidden;
+
+    text-overflow:
+      ellipsis;
+  }
+
+  .record-time {
+    grid-area:
+      time;
+
+    width:
+      auto;
+  }
+
+  .record-meta {
+    display:
+      block;
+
+    grid-area:
+      meta;
   }
 }
