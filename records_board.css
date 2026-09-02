@@ -1471,3 +1471,58 @@ body.record-board-page {
       block;
   }
 }
+/* =========================================================
+   FINAL DESKTOP RECORD-CELL FIT
+   Keeps full surnames together without changing board layout
+   ========================================================= */
+
+@media (min-width: 901px) {
+
+  .record-cell {
+    padding:
+      8px
+      8px;
+  }
+
+  .record {
+    grid-template-columns:
+      minmax(0, 1fr)
+      56px;
+
+    column-gap:
+      5px;
+  }
+
+  .record-name {
+    font-size:
+      .69rem;
+
+    line-height:
+      1.13;
+
+    letter-spacing:
+      0;
+
+    word-break:
+      keep-all;
+
+    overflow-wrap:
+      normal;
+
+    hyphens:
+      none;
+  }
+
+  .record-time {
+    width:
+      56px;
+
+    font-size:
+      .84rem;
+  }
+
+  .record-meta {
+    font-size:
+      .62rem;
+  }
+}
