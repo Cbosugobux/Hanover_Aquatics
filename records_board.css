@@ -1,6 +1,6 @@
 :root {
   /* =========================================================
-     HANOVER AQUATICS BRANDING
+     HANOVER AQUATICS
      ========================================================= */
 
   --brand-primary: #111111;
@@ -22,18 +22,28 @@
   --text-dark: #15171a;
   --text-muted: #adb3b9;
 
-  --border-soft: rgba(255, 255, 255, .12);
+  --border-soft: rgba(255,255,255,.12);
 
   --shadow:
-    0 14px 34px rgba(0, 0, 0, .34);
+    0 14px 34px rgba(0,0,0,.34);
 
   --radius-lg: 16px;
-  --radius-md: 10px;
+
+  /*
+    IMPORTANT
+
+    The header, age-group row, event column and record cells
+    all use the SAME board width.
+
+    This prevents the header/table alignment problems.
+  */
+
+  --board-min-width: 1500px;
 }
 
 
 /* =========================================================
-   RESET / BASE
+   RESET
    ========================================================= */
 
 * {
@@ -44,6 +54,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+
   min-height: 100%;
 }
 
@@ -62,10 +73,14 @@ body.record-board-page {
       var(--page-bg) 72%
     );
 
-  color: var(--text-main);
+  color:
+    var(--text-main);
 
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing:
+    antialiased;
+
+  text-rendering:
+    optimizeLegibility;
 }
 
 
@@ -74,12 +89,14 @@ body.record-board-page {
    ========================================================= */
 
 .record-page-shell {
-  width: min(1760px, 98%);
+  width:
+    min(1800px, 100%);
 
-  margin: 0 auto;
+  margin:
+    0 auto;
 
   padding:
-    20px
+    18px
     12px
     32px;
 }
@@ -91,6 +108,7 @@ body.record-board-page {
 
 .record-board-nav {
   display: flex;
+
   flex-wrap: wrap;
 
   justify-content: center;
@@ -101,6 +119,10 @@ body.record-board-page {
     0
     0
     18px;
+
+  padding:
+    0
+    8px;
 }
 
 .record-board-nav a {
@@ -140,7 +162,7 @@ body.record-board-page {
     none;
 
   box-shadow:
-    0 3px 8px rgba(0, 0, 0, .22);
+    0 3px 8px rgba(0,0,0,.22);
 
   transition:
     background .15s ease,
@@ -155,9 +177,6 @@ body.record-board-page {
 
   border-color:
     var(--brand-accent);
-
-  color:
-    #ffffff;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -173,13 +192,13 @@ body.record-board-page {
       translateY(-1px);
 
     box-shadow:
-      0 5px 12px rgba(0, 0, 0, .28);
+      0 5px 12px rgba(0,0,0,.28);
   }
 }
 
 .record-board-nav a:focus-visible {
   outline:
-    3px solid #ffffff;
+    3px solid var(--brand-accent);
 
   outline-offset:
     3px;
@@ -187,11 +206,23 @@ body.record-board-page {
 
 
 /* =========================================================
-   MAIN RECORD BOARD
+   RECORD BOARD OUTER SHELL
+
+   CRITICAL CHANGE:
+   The WHOLE board scrolls horizontally.
+
+   Header + table + footer therefore stay aligned.
    ========================================================= */
 
 .record-board {
-  overflow: hidden;
+  width:
+    100%;
+
+  overflow-x:
+    auto;
+
+  overflow-y:
+    hidden;
 
   border:
     1px solid var(--border-soft);
@@ -204,28 +235,51 @@ body.record-board-page {
 
   box-shadow:
     var(--shadow);
+
+  overscroll-behavior-x:
+    contain;
+
+  -webkit-overflow-scrolling:
+    touch;
+
+  scrollbar-color:
+    var(--brand-accent)
+    var(--surface-raised);
 }
 
 
 /* =========================================================
-   RECORD BOARD HEADER
+   BOARD HEADER
+
+   Same minimum width as table.
    ========================================================= */
 
 .record-board-header {
   display: grid;
 
   grid-template-columns:
-    minmax(150px, 1fr)
-    minmax(320px, 1.4fr)
-    minmax(150px, 1fr);
+    minmax(280px, 1fr)
+    minmax(440px, 1.2fr)
+    minmax(280px, 1fr);
 
-  gap: 18px;
+  gap:
+    20px;
 
-  align-items: center;
+  align-items:
+    center;
+
+  width:
+    100%;
+
+  min-width:
+    var(--board-min-width);
+
+  min-height:
+    150px;
 
   padding:
     20px
-    24px;
+    28px;
 
   background:
     linear-gradient(
@@ -240,92 +294,39 @@ body.record-board-page {
 
 
 /* =========================================================
-   CLUB TITLE / LOGO
-   ========================================================= */
-
-.record-board-title {
-  text-align: center;
-}
-
-.record-board-title img {
-  display: none;
-
-  width: auto;
-  height: auto;
-
-  max-width: 250px;
-  max-height: 82px;
-
-  margin:
-    0 auto 8px;
-
-  object-fit: contain;
-}
-
-.record-board-title img.ready {
-  display: block;
-}
-
-.record-board-title h1 {
-  margin: 0;
-
-  color: #ffffff;
-
-  font-size:
-    clamp(1.35rem, 2.1vw, 2.2rem);
-
-  line-height: 1.08;
-
-  font-weight: 900;
-
-  letter-spacing: .035em;
-
-  text-transform: uppercase;
-}
-
-.record-board-title .course-name {
-  margin-top: 7px;
-
-  color:
-    var(--brand-accent);
-
-  font-size:
-    .85rem;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .14em;
-
-  text-transform:
-    uppercase;
-}
-
-
-/* =========================================================
-   GIRLS / BOYS HEADINGS
+   GIRLS / BOYS HEADER
    ========================================================= */
 
 .record-gender-heading {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height:
+    68px;
+
   padding:
     12px
-    16px;
+    18px;
 
   border:
-    1px solid rgba(255, 255, 255, .20);
+    1px solid rgba(255,255,255,.20);
 
   border-radius:
-    8px;
+    10px;
 
   background:
-    rgba(255, 255, 255, .065);
+    rgba(255,255,255,.065);
 
   color:
     #ffffff;
 
   font-size:
-    clamp(1rem, 1.5vw, 1.35rem);
+    clamp(1rem, 1.4vw, 1.35rem);
+
+  line-height:
+    1;
 
   font-weight:
     900;
@@ -342,12 +343,95 @@ body.record-board-page {
 
 .record-gender-heading:first-child {
   border-left:
-    5px solid var(--brand-accent);
+    6px solid var(--brand-accent);
 }
 
 .record-gender-heading:last-child {
   border-right:
-    5px solid var(--brand-accent);
+    6px solid var(--brand-accent);
+}
+
+
+/* =========================================================
+   CLUB TITLE
+   ========================================================= */
+
+.record-board-title {
+  min-width: 0;
+
+  text-align:
+    center;
+}
+
+.record-board-title img {
+  display:
+    none;
+
+  width:
+    auto;
+
+  height:
+    auto;
+
+  max-width:
+    300px;
+
+  max-height:
+    86px;
+
+  margin:
+    0 auto 8px;
+
+  object-fit:
+    contain;
+}
+
+.record-board-title img.ready {
+  display:
+    block;
+}
+
+.record-board-title h1 {
+  margin:
+    0;
+
+  color:
+    #ffffff;
+
+  font-size:
+    clamp(1.35rem, 2vw, 2.15rem);
+
+  line-height:
+    1.05;
+
+  font-weight:
+    950;
+
+  letter-spacing:
+    .035em;
+
+  text-transform:
+    uppercase;
+}
+
+.record-board-title .course-name {
+  margin-top:
+    8px;
+
+  color:
+    var(--brand-accent);
+
+  font-size:
+    .82rem;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    .14em;
+
+  text-transform:
+    uppercase;
 }
 
 
@@ -356,7 +440,14 @@ body.record-board-page {
    ========================================================= */
 
 .record-status {
-  padding: 22px;
+  width:
+    100%;
+
+  min-width:
+    var(--board-min-width);
+
+  padding:
+    22px;
 
   color:
     var(--text-muted);
@@ -371,36 +462,34 @@ body.record-board-page {
 
 /* =========================================================
    TABLE WRAPPER
+
+   Outer .record-board now performs the scrolling.
    ========================================================= */
 
 .record-table-wrap {
-  width: 100%;
+  width:
+    100%;
 
-  overflow-x: auto;
-
-  overscroll-behavior-x:
-    contain;
-
-  -webkit-overflow-scrolling:
-    touch;
+  overflow:
+    visible;
 
   background:
     var(--surface);
-
-  scrollbar-color:
-    var(--brand-accent)
-    var(--surface-raised);
 }
 
 
 /* =========================================================
-   RECORD TABLE
+   TABLE
+
+   Same width system as board header.
    ========================================================= */
 
 .record-table {
-  width: 100%;
+  width:
+    100%;
 
-  min-width: 1180px;
+  min-width:
+    var(--board-min-width);
 
   border-collapse:
     separate;
@@ -417,7 +506,7 @@ body.record-board-page {
 
 
 /* =========================================================
-   TABLE GRID
+   GRID BORDERS
    ========================================================= */
 
 .record-table th,
@@ -431,10 +520,13 @@ body.record-board-page {
 
 
 /* =========================================================
-   AGE GROUP HEADERS
+   AGE GROUP HEADER ROW
    ========================================================= */
 
 .record-table thead th {
+  height:
+    60px;
+
   padding:
     11px
     6px;
@@ -452,6 +544,9 @@ body.record-board-page {
   font-size:
     .82rem;
 
+  line-height:
+    1;
+
   font-weight:
     900;
 
@@ -461,15 +556,19 @@ body.record-board-page {
   text-align:
     center;
 
+  vertical-align:
+    middle;
+
   text-transform:
     uppercase;
 
   border-bottom:
-    4px solid var(--brand-accent);
+    5px solid var(--brand-accent);
 }
 
 .record-table thead th.event-head {
-  width: 130px;
+  width:
+    140px;
 
   background:
     linear-gradient(
@@ -491,8 +590,11 @@ body.record-board-page {
    ========================================================= */
 
 .record-table tbody th.event-cell {
+  width:
+    140px;
+
   padding:
-    9px
+    8px
     6px;
 
   background:
@@ -506,7 +608,10 @@ body.record-board-page {
     #ffffff;
 
   font-size:
-    .79rem;
+    .78rem;
+
+  line-height:
+    1.12;
 
   font-weight:
     900;
@@ -514,11 +619,11 @@ body.record-board-page {
   letter-spacing:
     .025em;
 
-  line-height:
-    1.15;
-
   text-align:
     center;
+
+  vertical-align:
+    middle;
 
   text-transform:
     uppercase;
@@ -532,10 +637,13 @@ body.record-board-page {
 
 
 /* =========================================================
-   SECTION HEADERS
+   SECTION ROWS
    ========================================================= */
 
 .record-table tbody tr.section-row th {
+  height:
+    46px;
+
   padding:
     10px
     12px;
@@ -555,6 +663,9 @@ body.record-board-page {
   font-size:
     .8rem;
 
+  line-height:
+    1;
+
   font-weight:
     900;
 
@@ -564,17 +675,21 @@ body.record-board-page {
   text-align:
     center;
 
+  vertical-align:
+    middle;
+
   text-transform:
     uppercase;
 }
 
 
 /* =========================================================
-   RECORD PLACARDS
+   RECORD CELLS
    ========================================================= */
 
 .record-cell {
-  height: 80px;
+  height:
+    82px;
 
   padding:
     8px
@@ -600,9 +715,6 @@ body.record-board-page {
     var(--placard-alt);
 }
 
-
-/* Desktop mouse hover only */
-
 @media (hover: hover) and (pointer: fine) {
 
   .record-cell:hover {
@@ -622,7 +734,7 @@ body.record-board-page {
 
 
 /* =========================================================
-   EMPTY RECORD CELLS
+   EMPTY CELLS
    ========================================================= */
 
 .record-cell.empty {
@@ -640,25 +752,26 @@ body.record-board-page {
 /* =========================================================
    RECORD CONTENT — DESKTOP
 
-   Athlete name is deliberately NOT truncated.
+   Name and time occupy predictable areas.
    ========================================================= */
 
 .record {
-  display: grid;
+  display:
+    grid;
 
   grid-template-columns:
     minmax(0, 1fr)
-    max-content;
+    62px;
 
   grid-template-areas:
     "name time"
     "meta meta";
 
   column-gap:
-    8px;
+    7px;
 
   row-gap:
-    5px;
+    6px;
 
   align-items:
     start;
@@ -666,16 +779,16 @@ body.record-board-page {
   width:
     100%;
 
-  line-height:
-    1.08;
+  min-width:
+    0;
 }
 
 
 /* =========================================================
-   SWIMMER / RELAY NAME
+   ATHLETE NAME
 
-   Names are allowed to wrap instead of showing:
-     REAGAN STR...
+   CRITICAL CHANGE:
+   Never split a surname in the middle.
    ========================================================= */
 
 .record-name {
@@ -686,42 +799,51 @@ body.record-board-page {
     0;
 
   color:
-    #14171a;
+    #111418;
 
   font-size:
-    .76rem;
+    .72rem;
+
+  line-height:
+    1.16;
 
   font-weight:
     900;
 
   letter-spacing:
-    .01em;
-
-  line-height:
-    1.12;
+    .005em;
 
   text-transform:
     uppercase;
 
+  /*
+    Wrap only at normal spaces.
+  */
+
   white-space:
     normal;
+
+  word-break:
+    normal;
+
+  overflow-wrap:
+    normal;
+
+  hyphens:
+    none;
 
   overflow:
     visible;
 
   text-overflow:
     clip;
-
-  overflow-wrap:
-    break-word;
-
-  word-break:
-    normal;
 }
 
 
 /* =========================================================
-   RECORD TIME
+   TIME
+
+   Every time gets exactly the same column width.
    ========================================================= */
 
 .record-time {
@@ -731,17 +853,23 @@ body.record-board-page {
   align-self:
     start;
 
+  width:
+    62px;
+
   color:
     #111111;
 
   font-size:
-    .9rem;
+    .87rem;
 
   line-height:
     1.1;
 
   font-weight:
-    900;
+    950;
+
+  text-align:
+    right;
 
   font-variant-numeric:
     tabular-nums;
@@ -752,15 +880,15 @@ body.record-board-page {
 
 
 /* =========================================================
-   YEAR / MEET
-
-   Secondary information can truncate.
-   Athlete name cannot.
+   MEET / YEAR
    ========================================================= */
 
 .record-meta {
   grid-area:
     meta;
+
+  display:
+    block;
 
   min-width:
     0;
@@ -769,10 +897,10 @@ body.record-board-page {
     hidden;
 
   color:
-    #666d74;
+    #65707a;
 
   font-size:
-    .65rem;
+    .64rem;
 
   line-height:
     1.15;
@@ -789,7 +917,7 @@ body.record-board-page {
 
 
 /* =========================================================
-   RELAY RECORDS
+   RELAYS
    ========================================================= */
 
 .record-cell.relay {
@@ -797,29 +925,28 @@ body.record-board-page {
     auto;
 
   min-height:
-    88px;
+    92px;
 }
 
 .record-cell.relay .record-name {
   font-size:
-    .67rem;
+    .65rem;
 
   line-height:
-    1.1;
+    1.12;
 
-  white-space:
+  word-break:
     normal;
 
-  overflow:
-    visible;
-
-  text-overflow:
-    clip;
+  overflow-wrap:
+    normal;
 }
 
 
 /* =========================================================
-   LEGEND / FOOTER
+   LEGEND
+
+   Same width as rest of board.
    ========================================================= */
 
 .record-legend {
@@ -835,6 +962,12 @@ body.record-board-page {
   gap:
     8px
     24px;
+
+  width:
+    100%;
+
+  min-width:
+    var(--board-min-width);
 
   padding:
     13px
@@ -866,83 +999,76 @@ body.record-board-page {
    TABLET
    <= 900px
 
-   NAME + TIME ONLY
-
-   Meet/year disappear because they are secondary.
+   The board remains wide and scrollable.
+   We do NOT crush eight record columns into 900px.
    ========================================================= */
 
 @media (max-width: 900px) {
+
+  :root {
+    --board-min-width:
+      1320px;
+  }
 
   .record-page-shell {
     width:
       100%;
 
     padding:
-      12px
-      8px
+      10px
+      6px
       24px;
   }
 
-
-  /* ---------------------------------------------------------
-     HEADER
-     --------------------------------------------------------- */
-
   .record-board-header {
-    grid-template-columns:
-      1fr;
+    min-height:
+      120px;
 
-    gap:
-      10px;
+    grid-template-columns:
+      minmax(250px, 1fr)
+      minmax(400px, 1.15fr)
+      minmax(250px, 1fr);
 
     padding:
-      16px;
+      16px
+      20px;
   }
 
   .record-gender-heading {
-    display:
-      none;
+    min-height:
+      56px;
+
+    font-size:
+      1rem;
   }
 
   .record-board-title img {
     max-width:
-      230px;
+      240px;
 
     max-height:
-      68px;
+      66px;
   }
 
-
-  /* ---------------------------------------------------------
-     BOARD
-     --------------------------------------------------------- */
-
-  .record-table {
-    min-width:
-      980px;
-  }
-
-  .record-table thead th {
-    padding:
-      10px
-      5px;
-
+  .record-board-title h1 {
     font-size:
-      .75rem;
+      1.45rem;
   }
 
 
   /* ---------------------------------------------------------
-     TABLET PLACARD
+     TABLET CELLS
+
+     Name above time = cleaner and more readable.
      --------------------------------------------------------- */
 
   .record-cell {
     height:
-      68px;
+      72px;
 
     padding:
       7px
-      8px;
+      9px;
   }
 
   .record {
@@ -959,92 +1085,51 @@ body.record-board-page {
       center;
 
     gap:
-      4px;
+      5px;
 
     width:
       100%;
-
-    line-height:
-      1.1;
   }
-
-
-  /* Full athlete name */
 
   .record-name {
     width:
       100%;
 
-    color:
-      #15171a;
-
     font-size:
-      .73rem;
+      .7rem;
 
     line-height:
-      1.1;
+      1.12;
 
-    font-weight:
-      900;
-
-    white-space:
+    word-break:
       normal;
 
-    overflow:
-      visible;
-
-    text-overflow:
-      clip;
-
     overflow-wrap:
-      break-word;
+      normal;
+
+    hyphens:
+      none;
   }
-
-
-  /* Record time */
 
   .record-time {
     width:
-      100%;
-
-    color:
-      #111111;
+      auto;
 
     font-size:
-      .88rem;
-
-    line-height:
-      1;
-
-    font-weight:
-      900;
+      .85rem;
 
     text-align:
       left;
   }
-
-
-  /* Hide secondary info */
 
   .record-meta {
     display:
       none;
   }
 
-
-  /* Relay */
-
   .record-cell.relay {
     min-height:
-      76px;
-  }
-
-  .record-cell.relay .record-name {
-    font-size:
-      .65rem;
-
-    line-height:
-      1.08;
+      80px;
   }
 }
 
@@ -1053,10 +1138,17 @@ body.record-board-page {
    MOBILE
    <= 550px
 
-   NAME + TIME ONLY
+   Still a wide physical record board.
+
+   User swipes left/right rather than receiving crushed cells.
    ========================================================= */
 
 @media (max-width: 550px) {
+
+  :root {
+    --board-min-width:
+      1200px;
+  }
 
   .record-page-shell {
     padding:
@@ -1078,16 +1170,16 @@ body.record-board-page {
 
 
   /* ---------------------------------------------------------
-     NAVIGATION
+     NAV
      --------------------------------------------------------- */
 
   .record-board-nav {
+    gap:
+      7px;
+
     padding:
       0
       8px;
-
-    gap:
-      7px;
   }
 
   .record-board-nav a {
@@ -1098,67 +1190,82 @@ body.record-board-page {
       46px;
 
     padding:
-      9px
-      10px;
+      8px
+      9px;
 
     font-size:
-      .82rem;
-
-    text-align:
-      center;
+      .8rem;
   }
 
 
   /* ---------------------------------------------------------
-     HEADER
+     BOARD HEADER
      --------------------------------------------------------- */
 
   .record-board-header {
+    min-height:
+      105px;
+
+    grid-template-columns:
+      240px
+      360px
+      240px;
+
+    gap:
+      14px;
+
     padding:
-      14px
-      12px;
+      13px
+      16px;
+  }
+
+  .record-gender-heading {
+    min-height:
+      50px;
+
+    font-size:
+      .92rem;
   }
 
   .record-board-title img {
     max-width:
-      210px;
+      205px;
 
     max-height:
-      60px;
+      58px;
   }
 
   .record-board-title h1 {
     font-size:
-      1.25rem;
+      1.22rem;
   }
 
   .record-board-title .course-name {
     font-size:
-      .72rem;
+      .7rem;
   }
 
 
   /* ---------------------------------------------------------
-     BOARD
+     TABLE
      --------------------------------------------------------- */
 
-  .record-table {
-    min-width:
-      900px;
-  }
-
   .record-table thead th {
+    height:
+      50px;
+
     padding:
-      9px
+      8px
       4px;
 
     font-size:
       .7rem;
   }
 
-  .record-table thead th.event-head {
+  .record-table thead th.event-head,
+  .record-table tbody th.event-cell {
     width:
-      100px;
+      120px;
   }
 
   .record-table tbody th.event-cell {
@@ -1167,24 +1274,21 @@ body.record-board-page {
       4px;
 
     font-size:
-      .68rem;
-
-    line-height:
-      1.08;
+      .67rem;
   }
 
 
   /* ---------------------------------------------------------
-     MOBILE PLACARD
+     MOBILE PLACARDS
      --------------------------------------------------------- */
 
   .record-cell {
     height:
-      66px;
+      68px;
 
     padding:
       6px
-      7px;
+      8px;
   }
 
   .record {
@@ -1202,100 +1306,60 @@ body.record-board-page {
 
     gap:
       4px;
-
-    width:
-      100%;
   }
-
-
-  /* Athlete name */
 
   .record-name {
     width:
       100%;
 
-    color:
-      #15171a;
-
     font-size:
-      .68rem;
+      .66rem;
 
     line-height:
-      1.08;
+      1.1;
 
-    font-weight:
-      900;
-
-    white-space:
+    word-break:
       normal;
 
-    overflow:
-      visible;
-
-    text-overflow:
-      clip;
-
     overflow-wrap:
-      break-word;
+      normal;
+
+    hyphens:
+      none;
   }
-
-
-  /* Time */
 
   .record-time {
     width:
-      100%;
-
-    color:
-      #111111;
+      auto;
 
     font-size:
-      .82rem;
+      .81rem;
 
     line-height:
       1;
 
-    font-weight:
-      900;
-
     text-align:
       left;
   }
-
-
-  /* No meet/year on phones */
 
   .record-meta {
     display:
       none;
   }
 
-
-  /* Relay names */
-
   .record-cell.relay {
     min-height:
-      74px;
+      76px;
   }
 
   .record-cell.relay .record-name {
     font-size:
-      .61rem;
-
-    line-height:
-      1.07;
+      .6rem;
   }
-
-
-  /* Footer */
 
   .record-legend {
     justify-content:
       flex-start;
-
-    padding:
-      11px
-      12px;
 
     font-size:
       .7rem;
@@ -1305,35 +1369,18 @@ body.record-board-page {
 
 /* =========================================================
    VERY SMALL PHONES
-   <= 380px
    ========================================================= */
 
 @media (max-width: 380px) {
 
+  :root {
+    --board-min-width:
+      1160px;
+  }
+
   .record-board-nav a {
     flex:
       1 1 100%;
-
-    width:
-      100%;
-  }
-
-  .record-board-title img {
-    max-width:
-      185px;
-
-    max-height:
-      54px;
-  }
-
-  .record-board-title h1 {
-    font-size:
-      1.12rem;
-  }
-
-  .record-table {
-    min-width:
-      860px;
   }
 
   .record-name {
@@ -1362,6 +1409,11 @@ body.record-board-page {
       .25in;
   }
 
+  :root {
+    --board-min-width:
+      0px;
+  }
+
   body.record-board-page {
     background:
       #ffffff;
@@ -1375,7 +1427,15 @@ body.record-board-page {
       0;
   }
 
+  .record-board-nav {
+    display:
+      none;
+  }
+
   .record-board {
+    overflow:
+      visible;
+
     border-radius:
       0;
 
@@ -1383,23 +1443,15 @@ body.record-board-page {
       none;
   }
 
-  .record-board-nav {
-    display:
-      none;
-  }
+  .record-board-header,
+  .record-table,
+  .record-legend {
+    width:
+      100%;
 
-  .record-table-wrap {
-    overflow:
-      visible;
-  }
-
-  .record-table {
     min-width:
       0;
   }
-
-
-  /* Restore desktop detail when printing */
 
   .record {
     display:
@@ -1407,49 +1459,15 @@ body.record-board-page {
 
     grid-template-columns:
       minmax(0, 1fr)
-      max-content;
+      58px;
 
     grid-template-areas:
       "name time"
       "meta meta";
-
-    column-gap:
-      8px;
-
-    row-gap:
-      4px;
-  }
-
-  .record-name {
-    grid-area:
-      name;
-
-    display:
-      block;
-
-    white-space:
-      normal;
-
-    overflow:
-      visible;
-
-    text-overflow:
-      clip;
-  }
-
-  .record-time {
-    grid-area:
-      time;
-
-    width:
-      auto;
   }
 
   .record-meta {
     display:
       block;
-
-    grid-area:
-      meta;
   }
 }
