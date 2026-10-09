@@ -31,7 +31,7 @@ if not exist "%B64%" (
   exit /b 1
 )
 
-echo [1/3] Reconstructing hotfix ZIP...
+echo [1/4] Reconstructing hotfix ZIP...
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
   "$b64=[IO.File]::ReadAllText('%B64%'); [IO.File]::WriteAllBytes('%ZIP%', [Convert]::FromBase64String($b64))"
 if errorlevel 1 (
@@ -40,7 +40,7 @@ if errorlevel 1 (
   exit /b 1
 )
 
-echo [2/3] Extracting to:
+echo [2/4] Extracting to:
 echo   %MANAGER_ROOT%
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
   "Expand-Archive -LiteralPath '%ZIP%' -DestinationPath '%MANAGER_ROOT%' -Force"
@@ -50,11 +50,27 @@ if errorlevel 1 (
   exit /b 1
 )
 
-echo [3/3] Applying global hotfix...
+echo [3/4] Moving manual admin away from Phoenix Picks port 8765...
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "$files=@('%MANAGER_ROOT%\_HOTFIX_PAYLOAD\manual_admin.py','%MANAGER_ROOT%\manual_admin.py'); foreach($p in $files){ if(Test-Path $p){ $s=[IO.File]::ReadAllText($p); $s=$s.Replace('PORT = 8765','PORT = 8877'); [IO.File]::WriteAllText($p,$s,[Text.UTF8Encoding]::new($false)) } }"
+if errorlevel 1 (
+  echo ERROR updating manual admin port.
+  pause
+  exit /b 1
+)
+
+echo [4/4] Applying global hotfix...
 call "%MANAGER_ROOT%\APPLY_MANUAL_RECORDS_HOTFIX.bat"
+
+rem APPLY copies the payload over manual_admin.py, so verify the final file too.
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+  "$p='%MANAGER_ROOT%\manual_admin.py'; if(Test-Path $p){ $s=[IO.File]::ReadAllText($p); $s=$s.Replace('PORT = 8765','PORT = 8877'); [IO.File]::WriteAllText($p,$s,[Text.UTF8Encoding]::new($false)) }"
 
 del /q "%ZIP%" >nul 2>&1
 
 echo.
 echo Finished.
+echo Manual Records Admin now uses:
+echo   http://127.0.0.1:8877/
+echo.
 pause
