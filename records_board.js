@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const AGE_BANDS = [
     { key: "8U", label: "8 & Under", labels: new Set(["8 & Under", "8&U"]) },
-    { key: "9-10", label: "9-10", labels: new Set(["9-10"]) },
+    { key: "9-10", label: "9-10", labels: new Set(["9-10"]), relayLabels: new Set(["9-10", "10 & Under", "10&U"]) },
     { key: "11-12", label: "11-12", labels: new Set(["11-12"]) },
     { key: "13-14", label: "13-14", labels: new Set(["13-14"]) },
     { key: "15O", label: "15 & Over", labels: new Set(["15 & Over", "15-16", "17-18", "15-18", "19 & Over", "OPEN", "Open"]) }
@@ -93,12 +93,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function recordForBand(records, gender, eventName, band, isRelay = false) {
+    const allowedLabels =
+      isRelay && band.relayLabels
+        ? band.relayLabels
+        : band.labels;
+
     return fastest(records.filter((r) =>
       r.course === course &&
       r.gender === gender &&
       r.event === eventName &&
       (isRelay ? r.scope === "relay" : r.scope !== "relay") &&
-      band.labels.has(String(r.age_group || "").trim())
+      allowedLabels.has(String(r.age_group || "").trim())
     ));
   }
 
