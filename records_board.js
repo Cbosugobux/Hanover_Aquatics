@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { key: "10U", label: "10 & Under", labels: new Set(["10 & Under", "10&U"]) },
     { key: "11-12", label: "11-12", labels: new Set(["11-12"]) },
     { key: "13-14", label: "13-14", labels: new Set(["13-14"]) },
-    { key: "15O", label: "15 & Over", labels: new Set(["15-16", "17-18", "15-18", "OPEN", "Open"]) }
+    { key: "15O", label: "15 & Over", labels: new Set(["15 & Over", "15-16", "17-18", "15-18", "19 & Over", "OPEN", "Open"]) }
   ];
 
   const COURSE_EVENTS = {
