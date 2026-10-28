@@ -1,11 +1,12 @@
 /*
   GLOBAL Top-10 Manager Record Board
 
-  Traditional record-board age bands:
-    10 & Under -> 10 & Under / 10&U
+  Hanover Aquatics record-board age bands:
+    8 & Under  -> 8 & Under / 8&U
+    9-10       -> 9-10
     11-12      -> 11-12
     13-14      -> 13-14
-    15 & Over  -> FASTEST across 15-16, 17-18, 15-18, and OPEN/Open
+    15 & Over  -> 15 & Over, with legacy compatibility for older 15+ labels
 
   Uses the club's own Static/top10.json and reads club branding from its
   existing index.html where possible, so the same files work for every club.
@@ -22,7 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoEl = document.getElementById("record-club-logo");
 
   const AGE_BANDS = [
-    { key: "10U", label: "10 & Under", labels: new Set(["10 & Under", "10&U"]) },
+    { key: "8U", label: "8 & Under", labels: new Set(["8 & Under", "8&U"]) },
+    { key: "9-10", label: "9-10", labels: new Set(["9-10"]) },
     { key: "11-12", label: "11-12", labels: new Set(["11-12"]) },
     { key: "13-14", label: "13-14", labels: new Set(["13-14"]) },
     { key: "15O", label: "15 & Over", labels: new Set(["15 & Over", "15-16", "17-18", "15-18", "19 & Over", "OPEN", "Open"]) }
@@ -139,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function sectionRow(label) {
-    return `<tr class="section-row"><th colspan="9">${esc(label)}</th></tr>`;
+    return `<tr class="section-row"><th colspan="11">${esc(label)}</th></tr>`;
   }
 
   function applyBranding(meta) {
